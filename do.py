@@ -16,7 +16,8 @@ PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
-    'svn-init', 'svn-sync', 'project-list', 'git-svn-init'])
+    'svn-init', 'svn-sync', 'svn-authors', 'project-list',
+    'git-svn-init'])
 
 
 def _create_config_parser():
@@ -42,6 +43,25 @@ def svn_sync(repo, repo_path, repo_url):
     print('Last synced revision:')
     os.system('svn propget svn:sync-last-merged-rev --revprop -r 0 ' + repo_url)
     os.system('svnsync --non-interactive sync ' + repo_url)
+
+
+def svn_authors(repo, repo_path, repo_url):
+    repo_author_path = os.path.join(cwd, 'authors-%s.txt' % repo)
+    if not os.path.isfile(repo_author_path):
+        os.system('svn log --xml %s | grep "^<author>" | '
+            'sort | uniq > %s' % (repo_url, repo_author_path))
+    names = []
+    with open(repo_author_path, 'r') as fd:
+        for line in fd.readlines():
+            name = line.replace('<author>', '').replace('</author>\n', '')
+            names.append(name)
+    out = '{name} = {name} <{name}@localhost>\n'
+    new_authors_path = os.path.join(cwd, 'authors-new.txt')
+    with open(new_authors_path, 'a') as fd:
+        for name in names:
+            fd.write(out.format(name=name))
+    os.system('cat %s | sort | uniq > authors.txt' % new_authors_path)
+    os.remove(new_authors_path)
 
 
 def svn_run_for_repos(func):
@@ -108,6 +128,7 @@ def main():
     commands = {
         'svn-init': (svn_run_for_repos, svn_init),
         'svn-sync': (svn_run_for_repos, svn_sync),
+        'svn-authors': (svn_run_for_repos, svn_authors),
         'project-list': (project_list, None),
         'git-svn-init': (svn_run_for_repos, git_svn_init)
     }

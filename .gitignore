@@ -3,3 +3,5 @@ bin
 parts
 repos/svn-mirror/*
 repos/git-svn/*
+authors.txt
+authors-*.txt

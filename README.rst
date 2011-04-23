@@ -39,3 +39,7 @@ Next up we want to build the list of all projects we want to mirror::
 And create empty git-svn mirrors for all projects::
 
   $ bin/py do.py git-svn-init
+
+Now we need to get a mapping of SVN to Github usernames::
+
+  $ bin/py do.py svn-authors
