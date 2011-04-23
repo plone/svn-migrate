@@ -4,11 +4,6 @@ Overview
 This repository contains scripts and docs to migrate Plone Core from Subversion
 to Github.
 
-Todo
-----
-
-...
-
 Setup
 =====
 
@@ -20,6 +15,9 @@ Bootstrap the buildout::
 Prepare local SVN mirrors::
 
   $ bin/py do.py svn-init
+
+Migrate
+=======
 
 Now sync the data, which will take some hours::
 
