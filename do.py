@@ -17,6 +17,12 @@ parser.add_argument('command', choices=[
     'svn-init', 'svn-sync', 'project-list'])
 
 
+def _create_config_parser():
+    config = ConfigParser.RawConfigParser()
+    config.optionxform = lambda s: s
+    return config
+
+
 def svn_init(repo, repo_path, repo_url):
     if not os.path.isdir(repo_path):
         os.system("svnadmin create %s" % repo_path)
@@ -49,8 +55,7 @@ def project_list():
     with open(sources_path, 'w') as fd:
         fd.write(resource.read())
 
-    config = ConfigParser.RawConfigParser()
-    config.optionxform = lambda s: s
+    config = _create_config_parser()
     config.read(sources_path)
 
     items = config.items('sources')
@@ -74,10 +79,7 @@ def project_list():
                 projects[repo].append((k, base_url))
 
     projects_path = os.path.join(cwd, 'projects.cfg')
-
-    config = ConfigParser.RawConfigParser()
-    config.optionxform = lambda s: s
-
+    config = _create_config_parser()
     for repo, values in projects.items():
         config.add_section(repo)
         for k, v in values:
