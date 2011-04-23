@@ -32,4 +32,8 @@ message next time::
 
 You can get rid of the lock by calling::
 
-    svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
+  $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
+
+Next up we want to build the list of all projects we want to mirror::
+
+  $ bin/py do.py project-list
