@@ -12,13 +12,15 @@ Todo
 Setup
 =====
 
-Bootstrap the buildout:
+Bootstrap the buildout::
 
   $ python2.6 bootstrap.py -d
   $ bin/buildout
 
-Prepare local SVN mirrors:
+Prepare local SVN mirrors::
 
-  $ bin/py prepare.py
+  $ bin/py do.py svn-init
 
-This will take a long time, at least some hours.
+Now sync the data, which will take some hours::
+
+  $ bin/py do.py svn-sync

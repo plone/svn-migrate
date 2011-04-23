@@ -1,3 +1,4 @@
+import argparse
 import os
 import os.path
 
@@ -7,10 +8,11 @@ REMOTE_SVN_BASE = 'http://svn.plone.org/svn/'
 cwd = os.path.abspath(os.curdir)
 repos_path = os.path.join(cwd, 'svn-repos')
 
+parser = argparse.ArgumentParser(description='Do stuff!')
+parser.add_argument('command', choices=['svn-init', 'svn-sync'])
 
-def init_svn_mirror(repo):
-    repo_path = os.path.join(repos_path, repo)
-    repo_url = 'file://' + repo_path
+
+def init_svn_mirror(repo, repo_path, repo_url):
     if not os.path.isdir(repo_path):
         os.system("svnadmin create %s" % repo_path)
     hook_path = os.path.join(repo_path, 'hooks', 'pre-revprop-change')
@@ -20,9 +22,7 @@ def init_svn_mirror(repo):
     os.system('svnsync init %s %s%s' % (repo_url, REMOTE_SVN_BASE, repo))
 
 
-def sync_svn_mirror(repo):
-    repo_path = os.path.join(repos_path, repo)
-    repo_url = 'file://' + repo_path
+def sync_svn_mirror(repo, repo_path, repo_url):
     print('Current remote revision:')
     os.system('svn info --xml %s%s | grep "revision=" | uniq' %
         (REMOTE_SVN_BASE, repo))
@@ -31,15 +31,27 @@ def sync_svn_mirror(repo):
     os.system('svnsync --non-interactive sync ' + repo_url)
 
 
+def run(func):
+    for repo in REPOS:
+        repo_path = os.path.join(repos_path, repo)
+        repo_url = 'file://' + repo_path
+        func(repo, repo_path, repo_url)
+
+
 def main():
+    arguments = parser.parse_args()
+    command_name = arguments.command
+
+    commands = {
+        'svn-init': init_svn_mirror,
+        'svn-sync': sync_svn_mirror,
+    }
+
     if not os.path.isdir(repos_path):
         os.mkdir(repos_path)
 
-    for repo in REPOS:
-        init_svn_mirror(repo)
-
-    for repo in REPOS:
-        sync_svn_mirror(repo)
+    command = commands.get(command_name)
+    run(command)
 
 
 if __name__ == '__main__':
