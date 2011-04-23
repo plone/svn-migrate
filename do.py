@@ -127,13 +127,9 @@ def git_svn_init(repo, repo_path, repo_url):
 def git_svn_fetch():
     git_base_path = os.path.join(GIT_SVN_REPOS_PATH)
     authors_path = os.path.join(cwd, 'authors.txt')
-    # names = [n for n in os.listdir(git_base_path) if not n.startswith('.')]
+    names = [n for n in os.listdir(git_base_path) if not n.startswith('.')]
 
-    config = _create_config_parser()
-    config.read(PROJECTS_PATH)
-    projects = config.items('archetypes')
-
-    for name, _ in projects:
+    for name in names:
         path = os.path.join(git_base_path, name)
         try:
             os.chdir(path)
