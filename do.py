@@ -10,7 +10,8 @@ SOURCES_URL = 'http://svn.plone.org/svn/plone/buildouts/plone-coredev/' \
     'branches/4.1/sources.cfg'
 
 cwd = os.path.abspath(os.curdir)
-repos_path = os.path.join(cwd, 'repos', 'svn-mirror')
+REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
+PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
@@ -44,7 +45,7 @@ def svn_sync(repo, repo_path, repo_url):
 
 def svn_run_for_repos(func):
     for repo in REPOS:
-        repo_path = os.path.join(repos_path, repo)
+        repo_path = os.path.join(REPOS_PATH, repo)
         repo_url = 'file://' + repo_path
         func(repo, repo_path, repo_url)
 
@@ -78,14 +79,13 @@ def project_list():
                 base_url = base_url.replace('https:', 'http:')
                 projects[repo].append((k, base_url))
 
-    projects_path = os.path.join(cwd, 'projects.cfg')
     config = _create_config_parser()
     for repo, values in projects.items():
         config.add_section(repo)
         for k, v in values:
             config.set(repo, k, v)
 
-    with open(projects_path, 'w') as fd:
+    with open(PROJECTS_PATH, 'w') as fd:
         config.write(fd)
 
 
