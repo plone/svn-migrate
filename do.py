@@ -17,7 +17,7 @@ PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
     'svn-init', 'svn-sync', 'svn-authors', 'project-list',
-    'git-svn-init'])
+    'git-svn-init', 'git-svn-fetch'])
 
 
 def _create_config_parser():
@@ -124,13 +124,32 @@ def git_svn_init(repo, repo_path, repo_url):
             (local_svn_url, git_repo_path))
 
 
+def git_svn_fetch():
+    git_base_path = os.path.join(GIT_SVN_REPOS_PATH)
+    authors_path = os.path.join(cwd, 'authors.txt')
+    # names = [n for n in os.listdir(git_base_path) if not n.startswith('.')]
+
+    config = _create_config_parser()
+    config.read(PROJECTS_PATH)
+    projects = config.items('archetypes')
+
+    for name, _ in projects:
+        path = os.path.join(git_base_path, name)
+        try:
+            os.chdir(path)
+            os.system('git svn fetch --authors-file=' + authors_path)
+        finally:
+            os.chdir(cwd)
+
+
 def main():
     commands = {
         'svn-init': (svn_run_for_repos, svn_init),
         'svn-sync': (svn_run_for_repos, svn_sync),
         'svn-authors': (svn_run_for_repos, svn_authors),
         'project-list': (project_list, None),
-        'git-svn-init': (svn_run_for_repos, git_svn_init)
+        'git-svn-init': (svn_run_for_repos, git_svn_init),
+        'git-svn-fetch': (git_svn_fetch, None),
     }
 
     arguments = parser.parse_args()

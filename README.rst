@@ -43,3 +43,7 @@ And create empty git-svn mirrors for all projects::
 Now we need to get a mapping of SVN to Github usernames::
 
   $ bin/py do.py svn-authors
+
+To finally fetch the data::
+
+  $ bin/py do.py git-svn-fetch
