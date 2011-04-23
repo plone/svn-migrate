@@ -128,7 +128,6 @@ def git_svn_fetch():
     git_base_path = os.path.join(GIT_SVN_REPOS_PATH)
     authors_path = os.path.join(cwd, 'authors.txt')
     names = [n for n in os.listdir(git_base_path) if not n.startswith('.')]
-
     for name in names:
         path = os.path.join(git_base_path, name)
         try:
