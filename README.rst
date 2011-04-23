@@ -24,3 +24,12 @@ Prepare local SVN mirrors::
 Now sync the data, which will take some hours::
 
   $ bin/py do.py svn-sync
+
+If you need to Ctrl-C the sync process, you might be greeted with an error
+message next time::
+
+  Failed to get lock on destination repos, currently held by...
+
+You can get rid of the lock by calling::
+
+    svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
