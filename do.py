@@ -10,12 +10,13 @@ SOURCES_URL = 'http://svn.plone.org/svn/plone/buildouts/plone-coredev/' \
     'branches/4.1/sources.cfg'
 
 cwd = os.path.abspath(os.curdir)
-REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
+SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
+GIT_SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'git-svn')
 PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
-    'svn-init', 'svn-sync', 'project-list'])
+    'svn-init', 'svn-sync', 'project-list', 'git-svn-init'])
 
 
 def _create_config_parser():
@@ -45,7 +46,7 @@ def svn_sync(repo, repo_path, repo_url):
 
 def svn_run_for_repos(func):
     for repo in REPOS:
-        repo_path = os.path.join(REPOS_PATH, repo)
+        repo_path = os.path.join(SVN_REPOS_PATH, repo)
         repo_url = 'file://' + repo_path
         func(repo, repo_path, repo_url)
 
@@ -89,11 +90,26 @@ def project_list():
         config.write(fd)
 
 
+def git_svn_init(repo, repo_path, repo_url):
+    config = _create_config_parser()
+    config.read(PROJECTS_PATH)
+    git_base_path = os.path.join(GIT_SVN_REPOS_PATH)
+    projects = config.items(repo)
+    for name, url in projects:
+        git_repo_path = os.path.join(git_base_path, name)
+        if os.path.isdir(git_repo_path):
+            continue
+        local_svn_url = url.replace(REMOTE_SVN_BASE + repo, repo_url)
+        os.system('git svn init --prefix=svn/ --stdlayout %s %s' %
+            (local_svn_url, git_repo_path))
+
+
 def main():
     commands = {
         'svn-init': (svn_run_for_repos, svn_init),
         'svn-sync': (svn_run_for_repos, svn_sync),
         'project-list': (project_list, None),
+        'git-svn-init': (svn_run_for_repos, git_svn_init)
     }
 
     arguments = parser.parse_args()

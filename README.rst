@@ -35,3 +35,7 @@ You can get rid of the lock by calling::
 Next up we want to build the list of all projects we want to mirror::
 
   $ bin/py do.py project-list
+
+And create empty git-svn mirrors for all projects::
+
+  $ bin/py do.py git-svn-init
