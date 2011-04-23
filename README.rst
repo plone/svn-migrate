@@ -47,3 +47,23 @@ Now we need to get a mapping of SVN to Github usernames::
 To finally fetch the data::
 
   $ bin/py do.py git-svn-fetch
+
+Todo
+----
+
+Make local Git clones and clean them up:
+
+- git-svn-abandon-fix-refs
+- git-svn-abandon-cleanup
+
+Publish them to Github:
+
+- Create Git repository
+- Fix default Git repository settings (no issue tracker/wiki, teams)
+- git remote add origin git@github.com:plone/<name>
+- git push --all
+- git push --tags
+
+Remove from SVN:
+
+- svn rm <svn base url>
