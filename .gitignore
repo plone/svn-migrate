@@ -1,4 +1,5 @@
 .*
 bin
 parts
-svn-repos/*
+repos/svn-mirror/*
+repos/git-svn/*

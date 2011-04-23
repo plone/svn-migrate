@@ -6,7 +6,7 @@ REPOS = ('archetypes', 'plone') # collective?
 REMOTE_SVN_BASE = 'http://svn.plone.org/svn/'
 
 cwd = os.path.abspath(os.curdir)
-repos_path = os.path.join(cwd, 'svn-repos')
+repos_path = os.path.join(cwd, 'repos', 'svn-mirror')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=['svn-init', 'svn-sync'])
