@@ -138,6 +138,7 @@ def git_svn_fetch():
         try:
             os.chdir(path)
             os.system('git svn fetch --authors-file=' + authors_path)
+            os.system('git gc --aggressive')
         finally:
             os.chdir(cwd)
 
