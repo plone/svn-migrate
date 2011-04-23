@@ -39,18 +39,13 @@ def run(func):
 
 
 def main():
-    arguments = parser.parse_args()
-    command_name = arguments.command
-
     commands = {
         'svn-init': init_svn_mirror,
         'svn-sync': sync_svn_mirror,
     }
 
-    if not os.path.isdir(repos_path):
-        os.mkdir(repos_path)
-
-    command = commands.get(command_name)
+    arguments = parser.parse_args()
+    command = commands.get(arguments.command)
     run(command)
 
 
