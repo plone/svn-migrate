@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=['svn-init', 'svn-sync'])
 
 
-def init_svn_mirror(repo, repo_path, repo_url):
+def svn_init(repo, repo_path, repo_url):
     if not os.path.isdir(repo_path):
         os.system("svnadmin create %s" % repo_path)
     hook_path = os.path.join(repo_path, 'hooks', 'pre-revprop-change')
@@ -22,7 +22,7 @@ def init_svn_mirror(repo, repo_path, repo_url):
     os.system('svnsync init %s %s%s' % (repo_url, REMOTE_SVN_BASE, repo))
 
 
-def sync_svn_mirror(repo, repo_path, repo_url):
+def svn_sync(repo, repo_path, repo_url):
     print('Current remote revision:')
     os.system('svn info --xml %s%s | grep "revision=" | uniq' %
         (REMOTE_SVN_BASE, repo))
@@ -40,8 +40,8 @@ def run(func):
 
 def main():
     commands = {
-        'svn-init': init_svn_mirror,
-        'svn-sync': sync_svn_mirror,
+        'svn-init': svn_init,
+        'svn-sync': svn_sync,
     }
 
     arguments = parser.parse_args()
