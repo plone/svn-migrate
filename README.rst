@@ -85,6 +85,8 @@ Publish Git repos to Github:
 - git push --all
 - git push --tags
 
+Look at http://pypi.python.org/pypi/github2 for talking to the Github API.
+
 Remove from SVN:
 
 - svn rm <svn base url>
