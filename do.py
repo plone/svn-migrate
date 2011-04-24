@@ -161,7 +161,8 @@ def git_copy():
             os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-fix-refs'))
             os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-cleanup'))
             # XXX test-prefix
-            os.system('git remote add origin git@github.com:plone/test-' + name)
+            os.system('git remote add origin git@github.com:plone/'
+                'test-%s.git' % name)
         finally:
             os.chdir(cwd)
 
