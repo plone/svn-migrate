@@ -59,7 +59,8 @@ Now we need to get a mapping of SVN to Github usernames::
 
 TODO: Currently this creates a dummy list of usernames for all users that
 committed data to any of the repositories. We only want to map the users that
-committed to one of the affected projects.
+committed to one of the affected projects. Maybe a helpful command is:
+`git log --all --format='%aN' | sort -u`
 
 To finally fetch the data::
 
