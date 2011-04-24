@@ -65,10 +65,19 @@ To finally fetch the data::
 
   $ bin/py do.py git-svn-fetch
 
+After this is done we can prepare cleaned up Git repositories::
+
+  $ bin/py do.py git-copy
+
+This will create proper Git tags and branches out of the SVN ones and do some
+other cleanup.
+
 Todo
 ----
 
-Publish them to Github:
+Create grafts files to add missing merge info.
+
+Publish Git repos to Github:
 
 - Create Git repository
 - Fix default Git repository settings (no issue tracker/wiki, teams)
