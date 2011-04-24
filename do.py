@@ -24,6 +24,12 @@ parser.add_argument('command', choices=[
     'git-svn-init', 'git-svn-fetch', 'git-copy'])
 
 
+IGNORED = frozenset([
+    'Products.kupu',
+    'plone.app.locales',
+])
+
+
 def _create_config_parser():
     config = ConfigParser.RawConfigParser()
     config.optionxform = lambda s: s
@@ -91,7 +97,7 @@ def project_list():
         projects[repo] = []
     base = 'https://svn.plone.org/svn/'
     plone_items = [(k, v.lstrip('svn ')) for k, v in items
-        if v.startswith('svn ' + base)]
+        if v.startswith('svn ' + base) and k not in IGNORED]
 
     for repo in REPOS:
         repo_base = base + repo + '/'
