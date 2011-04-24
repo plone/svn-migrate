@@ -1,7 +1,9 @@
 .*
-bin
-parts
-repos/svn-mirror/*
-repos/git-svn/*
 authors.txt
 authors-*.txt
+bin/
+git-svn-abandon/
+parts/
+repos/git/*
+repos/git-svn/*
+repos/svn-mirror/*

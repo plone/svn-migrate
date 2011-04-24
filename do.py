@@ -2,6 +2,7 @@ import argparse
 import ConfigParser
 import os
 import os.path
+import shutil
 import urllib2
 
 REPOS = ('archetypes', 'collective', 'plone')
@@ -10,14 +11,16 @@ SOURCES_URL = 'http://svn.plone.org/svn/plone/buildouts/plone-coredev/' \
     'branches/4.1/sources.cfg'
 
 cwd = os.path.abspath(os.curdir)
+TOOLS_PATH = os.path.join(cwd, 'git-svn-abandon')
 SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
 GIT_SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'git-svn')
+GIT_REPOS_PATH = os.path.join(cwd, 'repos', 'git')
 PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
     'svn-init', 'svn-sync', 'svn-authors', 'project-list',
-    'git-svn-init', 'git-svn-fetch'])
+    'git-svn-init', 'git-svn-fetch', 'git-copy'])
 
 
 def _create_config_parser():
@@ -125,15 +128,39 @@ def git_svn_init(repo, repo_path, repo_url):
 
 
 def git_svn_fetch():
-    git_base_path = os.path.join(GIT_SVN_REPOS_PATH)
+    git_svn_base_path = os.path.join(GIT_SVN_REPOS_PATH)
     authors_path = os.path.join(cwd, 'authors.txt')
-    names = [n for n in os.listdir(git_base_path) if not n.startswith('.')]
+    names = [n for n in os.listdir(git_svn_base_path) if not n.startswith('.')]
     for name in names:
-        path = os.path.join(git_base_path, name)
+        path = os.path.join(git_svn_base_path, name)
+        if not os.path.isdir(path):
+            continue
         try:
             os.chdir(path)
             os.system('git svn fetch --authors-file=' + authors_path)
-            os.system('git gc --aggressive')
+        finally:
+            os.chdir(cwd)
+
+
+def git_copy():
+    git_svn_base_path = os.path.join(GIT_SVN_REPOS_PATH)
+    git_base_path = os.path.join(GIT_REPOS_PATH)
+    names = [n for n in os.listdir(git_svn_base_path) if not n.startswith('.')]
+    for name in names[:2]:
+        svn_path = os.path.join(git_svn_base_path, name)
+        if not os.path.isdir(svn_path):
+            continue
+        git_path = os.path.join(git_base_path, name)
+        if os.path.isdir(git_path):
+            print('Skipping git clone of ' + name)
+            continue
+        shutil.copytree(svn_path, git_path)
+        try:
+            os.chdir(git_path)
+            os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-fix-refs'))
+            os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-cleanup'))
+            # XXX test-prefix
+            os.system('git remote add origin git@github.com:plone/test-' + name)
         finally:
             os.chdir(cwd)
 
@@ -146,6 +173,7 @@ def main():
         'project-list': (project_list, None),
         'git-svn-init': (svn_run_for_repos, git_svn_init),
         'git-svn-fetch': (git_svn_fetch, None),
+        'git-copy': (git_copy, None),
     }
 
     arguments = parser.parse_args()

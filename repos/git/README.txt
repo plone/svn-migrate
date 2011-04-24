@@ -1,0 +1,1 @@
+# This directory contains cleaned up Git clones of all git-svn repositories
