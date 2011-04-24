@@ -114,7 +114,7 @@ def project_list():
     config = _create_config_parser()
     for repo, values in projects.items():
         config.add_section(repo)
-        for k, v in values:
+        for k, v in sorted(values):
             config.set(repo, k, v)
 
     with open(PROJECTS_PATH, 'w') as fd:
