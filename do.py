@@ -15,6 +15,7 @@ TOOLS_PATH = os.path.join(cwd, 'git-svn-abandon')
 SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
 GIT_SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'git-svn')
 GIT_REPOS_PATH = os.path.join(cwd, 'repos', 'git')
+AUTHORS_PATH = os.path.join(cwd, 'authors.txt')
 PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
@@ -129,7 +130,6 @@ def git_svn_init(repo, repo_path, repo_url):
 
 def git_svn_fetch():
     git_svn_base_path = os.path.join(GIT_SVN_REPOS_PATH)
-    authors_path = os.path.join(cwd, 'authors.txt')
     names = [n for n in os.listdir(git_svn_base_path) if not n.startswith('.')]
     for name in names:
         path = os.path.join(git_svn_base_path, name)
@@ -137,7 +137,7 @@ def git_svn_fetch():
             continue
         try:
             os.chdir(path)
-            os.system('git svn fetch --authors-file=' + authors_path)
+            os.system('git svn fetch --authors-file=' + AUTHORS_PATH)
         finally:
             os.chdir(cwd)
 
