@@ -61,6 +61,7 @@ def svn_authors(repo, repo_path, repo_url):
             names.append(name)
     out = '{name} = {name} <{name}@localhost>\n'
     new_authors_path = os.path.join(cwd, 'authors-new.txt')
+    shutil.copyfile(AUTHORS_PATH, new_authors_path)
     with open(new_authors_path, 'a') as fd:
         for name in names:
             fd.write(out.format(name=name))
