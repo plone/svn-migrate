@@ -47,10 +47,6 @@ def svn_init(repo, repo_path, repo_url):
 
 
 def svn_sync(repo, repo_path, repo_url):
-    print('Current remote revision:')
-    os.system('svn info --xml %s%s | grep "revision=" | uniq' %
-        (REMOTE_SVN_BASE, repo))
-    print('Last synced revision:')
     os.system('svn propget svn:sync-last-merged-rev --revprop -r 0 ' + repo_url)
     os.system('svnsync --non-interactive sync ' + repo_url)
 
