@@ -165,6 +165,8 @@ def git_copy():
         try:
             os.chdir(git_path)
             os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-fix-refs'))
+            # remove tags with revision specific information in them
+            os.system('git tag -l | grep "@" | xargs git tag -d')
             os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-cleanup'))
             # XXX test-prefix
             os.system('git remote add origin git@github.com:plone/'
