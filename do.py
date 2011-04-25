@@ -55,8 +55,8 @@ def svn_sync(repo, repo_path, repo_url):
 def svn_authors(repo, repo_path, repo_url):
     repo_author_path = os.path.join(cwd, 'authors-%s.txt' % repo)
     if not os.path.isfile(repo_author_path):
-        os.system('svn log --xml %s | grep "^<author>" | '
-            'sort | uniq > %s' % (repo_url, repo_author_path))
+        os.system('svn log --xml --with-revprop svn:author %s | '
+            'grep "^<author>" | sort -u > %s' % (repo_url, repo_author_path))
     names = []
     with open(repo_author_path, 'r') as fd:
         for line in fd.readlines():
