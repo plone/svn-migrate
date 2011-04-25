@@ -76,7 +76,9 @@ other cleanup.
 Todo
 ----
 
-Create grafts files to add missing merge info.
+Create grafts files to add missing merge info. Run `git filter-branch` once to
+make grafts permanent. Maybe http://evan-tech.livejournal.com/255341.html is
+useful.
 
 Validate the Git data:
 
