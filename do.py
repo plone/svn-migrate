@@ -49,6 +49,7 @@ def svn_init(repo, repo_path, repo_url):
 def svn_sync(repo, repo_path, repo_url):
     os.system('svn propget svn:sync-last-merged-rev --revprop -r 0 ' + repo_url)
     os.system('svnsync --non-interactive sync ' + repo_url)
+    os.system('svnadmin pack ' + repo_path)
 
 
 def svn_authors(repo, repo_path, repo_url):
