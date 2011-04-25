@@ -78,6 +78,12 @@ Todo
 
 Create grafts files to add missing merge info.
 
+Validate the Git data:
+
+- run setup.py sdist on tags and compare to pypi uploads?
+- check number of tags / branches
+- `diff -ur` trunk / master and tags?
+
 Publish Git repos to Github:
 
 - Create Git repository
