@@ -77,13 +77,15 @@ def svn_authors(repo, repo_path, repo_url):
 
 
 def svn_export(repo, repo_path, repo_url):
+    if repo != 'archetypes':
+        return
     tool = os.path.join(TOOLS_PATH, 'svn-all-fast-export')
     rules = os.path.join(cwd, 'rules-%s.cfg' % repo)
     mirror = os.path.join(SVN_REPOS_PATH, repo)
     try:
         os.chdir(SVN_EXPORT_PATH)
         os.system('{tool} --identity-map={authors} --rules={rules} '
-            '{mirror}'.format(tool=tool, authors=AUTHORS_PATH,
+            '--add-metadata {mirror}'.format(tool=tool, authors=AUTHORS_PATH,
                 rules=rules, mirror=mirror))
     finally:
         os.chdir(cwd)
