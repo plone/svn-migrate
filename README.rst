@@ -9,7 +9,7 @@ Setup
 
 Bootstrap the buildout::
 
-  $ python2.6 bootstrap.py -d
+  $ python2.7 bootstrap.py -d
   $ bin/buildout
 
 Migrate
@@ -17,13 +17,13 @@ Migrate
 
 We use a three-step process for the migration. First get local SVN mirrors of
 all plone.org repositories (via svnsync or bootstrap with a svndump). Then for
-a subset of projects create local git-svn mirrors. Finally create Git clones of
-the git-svn mirrors, run cleanup actions on them and finally publish those to
+a subset of projects create local git exports. Finally create Git clones of
+the git exports, run cleanup actions on them and finally publish those to
 Github.
 
-The first two steps are extremely time consuming, but both use sync approaches,
-which makes it possible to update them by new commits. Only the third step is
-destructive and requires a `downtime` for the affected project.
+The first step is extremely time consuming, but uses a sync approach, which
+makes it possible to update the data by new commits. The second and third step
+are destructive and require a `downtime` for the affected project.
 
 Detailed steps
 --------------
@@ -32,7 +32,7 @@ Prepare local SVN mirrors::
 
   $ bin/py do.py svn-init
 
-Now sync the data, which will take some hours::
+Now sync the data, which will take some hours to days::
 
   $ bin/py do.py svn-sync
 
@@ -45,15 +45,7 @@ You can get rid of the lock by calling::
 
   $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
 
-Next up we want to build the list of all projects we want to mirror::
-
-  $ bin/py do.py project-list
-
-And create empty git-svn mirrors for all projects::
-
-  $ bin/py do.py git-svn-init
-
-Now we need to get a mapping of SVN to Github usernames::
+Next up we need to get a mapping of SVN to Github usernames::
 
   $ bin/py do.py svn-authors
 
@@ -62,23 +54,16 @@ committed data to any of the repositories. We only want to map the users that
 committed to one of the affected projects. Maybe a helpful command is:
 `git log --all --format='%aN' | sort -u`
 
-To finally fetch the data::
+Now we want to run the actual export::
 
-  $ bin/py do.py git-svn-fetch
+  $ bin/py do.py svn-export
 
 After this is done we can prepare cleaned up Git repositories::
 
   $ bin/py do.py git-copy
 
-This will create proper Git tags and branches out of the SVN ones and do some
-other cleanup.
-
 Todo
 ----
-
-Create grafts files to add missing merge info. Run `git filter-branch` once to
-make grafts permanent. Maybe http://evan-tech.livejournal.com/255341.html is
-useful.
 
 Validate the Git data:
 

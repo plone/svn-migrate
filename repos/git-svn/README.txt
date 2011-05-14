@@ -1,1 +1,0 @@
-# This directory contains git-svn mirrors of all relevant projects

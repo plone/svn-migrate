@@ -3,25 +3,20 @@ import ConfigParser
 import os
 import os.path
 import shutil
-import urllib2
 
 REPOS = ('archetypes', 'collective', 'plone')
 REMOTE_SVN_BASE = 'http://svn.plone.org/svn/'
-SOURCES_URL = 'http://svn.plone.org/svn/plone/buildouts/plone-coredev/' \
-    'branches/4.1/sources.cfg'
 
 cwd = os.path.abspath(os.curdir)
 TOOLS_PATH = os.path.join(cwd, 'svn2git')
 SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
-GIT_SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'git-svn')
+SVN_EXPORT_PATH = os.path.join(cwd, 'repos', 'svn-export')
 GIT_REPOS_PATH = os.path.join(cwd, 'repos', 'git')
 AUTHORS_PATH = os.path.join(cwd, 'authors-map')
-PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
-    'svn-init', 'svn-sync', 'svn-authors', 'project-list',
-    'git-svn-init', 'git-svn-fetch', 'git-copy'])
+    'svn-init', 'svn-sync', 'svn-authors', 'svn-export', 'git-copy'])
 
 
 IGNORED = frozenset([
@@ -34,6 +29,13 @@ def _create_config_parser():
     config = ConfigParser.RawConfigParser()
     config.optionxform = lambda s: s
     return config
+
+
+def svn_run_for_repos(func):
+    for repo in REPOS:
+        repo_path = os.path.join(SVN_REPOS_PATH, repo)
+        repo_url = 'file://' + repo_path
+        func(repo, repo_path, repo_url)
 
 
 def svn_init(repo, repo_path, repo_url):
@@ -64,6 +66,8 @@ def svn_authors(repo, repo_path, repo_url):
             names.append(name)
     out = '{name} {name} <{name}@localhost>\n'
     new_authors_path = os.path.join(cwd, 'authors-new')
+    if not os.path.isfile(AUTHORS_PATH):
+        os.system('touch %s' % AUTHORS_PATH)
     shutil.copyfile(AUTHORS_PATH, new_authors_path)
     with open(new_authors_path, 'a') as fd:
         for name in names:
@@ -72,82 +76,21 @@ def svn_authors(repo, repo_path, repo_url):
     os.remove(new_authors_path)
 
 
-def svn_run_for_repos(func):
-    for repo in REPOS:
-        repo_path = os.path.join(SVN_REPOS_PATH, repo)
-        repo_url = 'file://' + repo_path
-        func(repo, repo_path, repo_url)
-
-
-def project_list():
-    resource = urllib2.urlopen(SOURCES_URL, timeout=10)
-    sources_path = os.path.join(cwd, 'sources-4.1.cfg')
-    with open(sources_path, 'w') as fd:
-        fd.write(resource.read())
-
-    config = _create_config_parser()
-    config.read(sources_path)
-
-    items = config.items('sources')
-    projects = {}
-    for repo in REPOS:
-        projects[repo] = []
-    base = 'https://svn.plone.org/svn/'
-    plone_items = [(k, v.lstrip('svn ')) for k, v in items
-        if v.startswith('svn ' + base) and k not in IGNORED]
-
-    for repo in REPOS:
-        repo_base = base + repo + '/'
-        for k, v in plone_items:
-            if v.startswith(repo_base):
-                if k in v:
-                    name = k
-                else:
-                    name = k.replace('Products.', '')
-                base_url = v[:v.find(name) + len(name)]
-                base_url = base_url.replace('https:', 'http:')
-                projects[repo].append((k, base_url))
-
-    config = _create_config_parser()
-    for repo, values in projects.items():
-        config.add_section(repo)
-        for k, v in sorted(values):
-            config.set(repo, k, v)
-
-    with open(PROJECTS_PATH, 'w') as fd:
-        config.write(fd)
-
-
-def git_svn_init(repo, repo_path, repo_url):
-    config = _create_config_parser()
-    config.read(PROJECTS_PATH)
-    git_base_path = os.path.join(GIT_SVN_REPOS_PATH)
-    projects = config.items(repo)
-    for name, url in projects:
-        git_repo_path = os.path.join(git_base_path, name)
-        if os.path.isdir(git_repo_path):
-            continue
-        local_svn_url = url.replace(REMOTE_SVN_BASE + repo, repo_url)
-        os.system('git svn init --prefix=svn/ --stdlayout %s %s' %
-            (local_svn_url, git_repo_path))
-
-
-def git_svn_fetch():
-    git_svn_base_path = os.path.join(GIT_SVN_REPOS_PATH)
-    names = [n for n in os.listdir(git_svn_base_path) if not n.startswith('.')]
-    for name in names:
-        path = os.path.join(git_svn_base_path, name)
-        if not os.path.isdir(path):
-            continue
-        try:
-            os.chdir(path)
-            os.system('git svn fetch --authors-file=' + AUTHORS_PATH)
-        finally:
-            os.chdir(cwd)
+def svn_export(repo, repo_path, repo_url):
+    tool = os.path.join(TOOLS_PATH, 'svn-all-fast-export')
+    rules = os.path.join(cwd, 'rules-%s.cfg' % repo)
+    mirror = os.path.join(SVN_REPOS_PATH, repo)
+    try:
+        os.chdir(SVN_EXPORT_PATH)
+        os.system('{tool} --identity-map={authors} --rules={rules} '
+            '--add-metadata {mirror}'.format(tool=tool, authors=AUTHORS_PATH,
+                rules=rules, mirror=mirror))
+    finally:
+        os.chdir(cwd)
 
 
 def git_copy():
-    git_svn_base_path = os.path.join(GIT_SVN_REPOS_PATH)
+    git_svn_base_path = os.path.join(SVN_EXPORT_PATH)
     git_base_path = os.path.join(GIT_REPOS_PATH)
     names = [n for n in os.listdir(git_svn_base_path) if not n.startswith('.')]
     for name in names:
@@ -177,9 +120,7 @@ def main():
         'svn-init': (svn_run_for_repos, svn_init),
         'svn-sync': (svn_run_for_repos, svn_sync),
         'svn-authors': (svn_run_for_repos, svn_authors),
-        'project-list': (project_list, None),
-        'git-svn-init': (svn_run_for_repos, git_svn_init),
-        'git-svn-fetch': (git_svn_fetch, None),
+        'svn-export': (svn_run_for_repos, svn_export),
         'git-copy': (git_copy, None),
     }
 
