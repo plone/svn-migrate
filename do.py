@@ -83,7 +83,7 @@ def svn_export(repo, repo_path, repo_url):
     rules = os.path.join(cwd, 'rules-%s.cfg' % repo)
     mirror = os.path.join(SVN_REPOS_PATH, repo)
     target = os.path.join(SVN_EXPORT_PATH, repo)
-    if not os.path.exists(target):
+    if not os.path.isdir(target):
         os.mkdir(target)
     try:
         os.chdir(target)
