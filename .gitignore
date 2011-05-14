@@ -1,6 +1,6 @@
 .*
 authors.txt
-authors-*.txt
+authors-*
 bin/
 eggs/
 git-svn-abandon/
@@ -9,3 +9,5 @@ parts/
 repos/git/*
 repos/git-svn/*
 repos/svn-mirror/*
+Products.*
+log-*

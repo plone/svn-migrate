@@ -1,0 +1,26 @@
+# rules for the plone repository
+
+create repository Products.LinguaPlone
+end repository
+
+
+match /(LinguaPlone|Products.LinguaPlone)/(trunk|trunk2)/
+  repository Products.LinguaPlone 
+  branch master
+end match
+
+
+match /(LinguaPlone|Products.LinguaPlone)/branches/([^/]+)/
+  repository Products.LinguaPlone 
+  branch \2
+end match
+
+match /(LinguaPlone|Products.LinguaPlone)/tags/([^/]+)/
+  repository Products.LinguaPlone 
+  branch refs/tags/\2
+end match
+
+# ignore everything else
+match /
+end match
+
