@@ -82,8 +82,11 @@ def svn_export(repo, repo_path, repo_url):
     tool = os.path.join(TOOLS_PATH, 'svn-all-fast-export')
     rules = os.path.join(cwd, 'rules-%s.cfg' % repo)
     mirror = os.path.join(SVN_REPOS_PATH, repo)
+    target = os.path.join(SVN_EXPORT_PATH, repo)
+    if not os.path.exists(target):
+        os.mkdir(target)
     try:
-        os.chdir(SVN_EXPORT_PATH)
+        os.chdir(target)
         os.system('{tool} --identity-map={authors} --rules={rules} '
             '--add-metadata {mirror}'.format(tool=tool, authors=AUTHORS_PATH,
                 rules=rules, mirror=mirror))
