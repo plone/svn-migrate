@@ -65,6 +65,11 @@ After this is done we can prepare cleaned up Git repositories::
 Todo
 ----
 
+Write more svn2git rules, examples at:
+
+- http://gitorious.org/svn2git/svn2git/trees/master/samples
+- http://gitorious.org/svn2git/kde-ruleset/trees/master
+
 Validate the Git data:
 
 - run setup.py sdist on tags and compare to pypi uploads?
