@@ -31,7 +31,7 @@ def _create_config_parser():
     return config
 
 
-def svn_run_for_repos(func):
+def run_for_repos(func):
     for repo in REPOS:
         repo_path = os.path.join(SVN_REPOS_PATH, repo)
         repo_url = 'file://' + repo_path
@@ -122,11 +122,11 @@ def git_copy():
 
 def main():
     commands = {
-        'svn-init': (svn_run_for_repos, svn_init),
-        'svn-sync': (svn_run_for_repos, svn_sync),
-        'svn-authors': (svn_run_for_repos, svn_authors),
-        'svn-export': (svn_run_for_repos, svn_export),
-        'git-copy': (git_copy, None),
+        'svn-init': (run_for_repos, svn_init),
+        'svn-sync': (run_for_repos, svn_sync),
+        'svn-authors': (run_for_repos, svn_authors),
+        'svn-export': (run_for_repos, svn_export),
+        'git-copy': (run_for_repos, git_copy),
     }
 
     arguments = parser.parse_args()
