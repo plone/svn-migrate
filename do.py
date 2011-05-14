@@ -83,7 +83,7 @@ def svn_export(repo, repo_path, repo_url):
     try:
         os.chdir(SVN_EXPORT_PATH)
         os.system('{tool} --identity-map={authors} --rules={rules} '
-            '--add-metadata {mirror}'.format(tool=tool, authors=AUTHORS_PATH,
+            '{mirror}'.format(tool=tool, authors=AUTHORS_PATH,
                 rules=rules, mirror=mirror))
     finally:
         os.chdir(cwd)
