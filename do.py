@@ -11,7 +11,7 @@ SOURCES_URL = 'http://svn.plone.org/svn/plone/buildouts/plone-coredev/' \
     'branches/4.1/sources.cfg'
 
 cwd = os.path.abspath(os.curdir)
-TOOLS_PATH = os.path.join(cwd, 'git-svn-abandon')
+TOOLS_PATH = os.path.join(cwd, 'svn2git')
 SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
 GIT_SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'git-svn')
 GIT_REPOS_PATH = os.path.join(cwd, 'repos', 'git')
