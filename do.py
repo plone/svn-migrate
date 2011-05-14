@@ -94,26 +94,31 @@ def svn_export(repo, repo_path, repo_url):
         os.chdir(cwd)
 
 
-def git_copy():
-    git_svn_base_path = os.path.join(SVN_EXPORT_PATH)
-    git_base_path = os.path.join(GIT_REPOS_PATH)
-    names = [n for n in os.listdir(git_svn_base_path) if not n.startswith('.')]
+def git_copy(repo, repo_path, repo_url):
+    mirror = os.path.join(SVN_EXPORT_PATH, repo)
+    if not os.path.isdir(mirror):
+        print('Skipping copy of repository ' + repo)
+        return
+    git_base_path = os.path.join(GIT_REPOS_PATH, repo)
+    if not os.path.isdir(git_base_path):
+        os.mkdir(git_base_path)
+    names = [n for n in os.listdir(mirror) if not n.startswith('.') and
+        os.path.isdir(os.path.join(mirror, n))]
     for name in names:
-        svn_path = os.path.join(git_svn_base_path, name)
-        if not os.path.isdir(svn_path):
-            continue
+        bare_git_path = os.path.join(mirror, name)
         git_path = os.path.join(git_base_path, name)
         if os.path.isdir(git_path):
-            print('Skipping git clone of ' + name)
+            print('Skipping copy of ' + name)
             continue
-        shutil.copytree(svn_path, git_path)
+        shutil.copytree(bare_git_path, git_path)
         try:
             os.chdir(git_path)
-            os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-fix-refs'))
             # remove tags with revision specific information in them
             os.system('git tag -l | grep "@" | xargs git tag -d')
-            os.system(os.path.join(TOOLS_PATH, 'git-svn-abandon-cleanup'))
-            # XXX test-prefix
+            os.system('git branch | grep "historical-" | xargs git branch -D')
+            os.system('git branch | grep "plips-" | xargs git branch -D')
+            os.system('git gc --aggressive --prune=now')
+            # TODO test-prefix
             os.system('git remote add origin git@github.com:plone/'
                 'test-%s.git' % name)
         finally:
