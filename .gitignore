@@ -2,6 +2,7 @@
 authors.txt
 authors-*.txt
 bin/
+eggs/
 git-svn-abandon/
 svn2git/
 parts/
