@@ -7,7 +7,5 @@ git-svn-abandon/
 svn2git/
 parts/
 repos/git/*
-repos/git-svn/*
+repos/svn-export/*
 repos/svn-mirror/*
-Products.*
-log-*
