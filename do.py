@@ -15,7 +15,7 @@ TOOLS_PATH = os.path.join(cwd, 'git-svn-abandon')
 SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
 GIT_SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'git-svn')
 GIT_REPOS_PATH = os.path.join(cwd, 'repos', 'git')
-AUTHORS_PATH = os.path.join(cwd, 'authors.txt')
+AUTHORS_PATH = os.path.join(cwd, 'authors-map')
 PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
@@ -62,13 +62,13 @@ def svn_authors(repo, repo_path, repo_url):
         for line in fd.readlines():
             name = line.replace('<author>', '').replace('</author>\n', '')
             names.append(name)
-    out = '{name} = {name} <{name}@localhost>\n'
-    new_authors_path = os.path.join(cwd, 'authors-new.txt')
+    out = '{name} {name} <{name}@localhost>\n'
+    new_authors_path = os.path.join(cwd, 'authors-new')
     shutil.copyfile(AUTHORS_PATH, new_authors_path)
     with open(new_authors_path, 'a') as fd:
         for name in names:
             fd.write(out.format(name=name))
-    os.system('cat %s | sort | uniq > authors.txt' % new_authors_path)
+    os.system('cat %s | sort | uniq > %s' % (new_authors_path, AUTHORS_PATH))
     os.remove(new_authors_path)
 
 
