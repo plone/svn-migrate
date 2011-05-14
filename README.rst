@@ -71,6 +71,14 @@ Write more svn2git rules, examples and docs at:
 - http://gitorious.org/svn2git/kde-ruleset/trees/master
 - http://techbase.kde.org/Projects/MoveToGit/UsingSvn2Git
 
+Especially this remark::
+
+  Also try grepping the output from svn2git for the string '"copy from"'
+  (with the double quotation marks). This will give you a list of
+  revisions/paths that svn2git could not detect the origin of. That is
+  someone did a svn cp/mv and the old path is not in the generated git
+  repository.
+
 Validate the Git data:
 
 - run setup.py sdist on tags and compare to pypi uploads?
