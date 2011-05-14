@@ -3,6 +3,7 @@ authors.txt
 authors-*.txt
 bin/
 git-svn-abandon/
+svn2git/
 parts/
 repos/git/*
 repos/git-svn/*
