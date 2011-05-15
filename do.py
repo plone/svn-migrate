@@ -2,6 +2,7 @@ import argparse
 import ConfigParser
 import os
 import os.path
+import re
 import shutil
 import subprocess
 
@@ -15,11 +16,12 @@ SVN_EXPORT_PATH = os.path.join(cwd, 'repos', 'svn-export')
 GIT_REPOS_PATH = os.path.join(cwd, 'repos', 'git')
 AUTHORS_PATH = os.path.join(cwd, 'authors-map')
 PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
+VERSION_RE = re.compile(r'^(plone|v)?[\d._-]+'
+    '(alpha|beta|branch|rc|RC|final|a|b|c|x)?(\d)*$')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
     'svn-init', 'svn-sync', 'svn-authors', 'svn-export', 'git-copy'])
-
 
 IGNORED = frozenset([
     'Products.kupu',
@@ -131,7 +133,9 @@ def git_copy(repo, repo_path, repo_url):
             extra_branches = set(git_branches) - set(svn_branches)
             extra_branches = extra_branches - set(['master'])
             for e in extra_branches:
-                os.system('git branch -D %s' % e)
+                match = VERSION_RE.match(e)
+                if match is None:
+                    os.system('git branch -D %s' % e)
             print('Running garbage collection')
             os.system('git gc --aggressive --prune=now --quiet')
             # TODO test-prefix
