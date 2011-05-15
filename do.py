@@ -77,8 +77,6 @@ def svn_authors(repo, repo_path, repo_url):
 
 
 def svn_export(repo, repo_path, repo_url):
-    if repo == 'collective':
-        return
     tool = os.path.join(TOOLS_PATH, 'svn-all-fast-export')
     rules = os.path.join(cwd, 'rules-%s.cfg' % repo)
     mirror = os.path.join(SVN_REPOS_PATH, repo)
