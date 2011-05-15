@@ -7,6 +7,9 @@ to Github.
 Setup
 =====
 
+You need to have libsvn-dev and qt-sqk installed for svn2git to be compiled.
+Don't try this on a non-Linux OS, it's won't work.
+
 Bootstrap the buildout::
 
   $ python2.7 bootstrap.py -d
@@ -58,7 +61,8 @@ Now we want to run the actual export::
 
   $ bin/py do.py svn-export
 
-After this is done we can prepare cleaned up Git repositories::
+This will take about 15 minutes in total. After this is done we can prepare
+cleaned up Git repositories::
 
   $ bin/py do.py git-copy
 
