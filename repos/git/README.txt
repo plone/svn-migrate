@@ -1,1 +1,1 @@
-# This directory contains cleaned up Git clones of all git-svn repositories
+# This directory contains the cleaned up Git repositories

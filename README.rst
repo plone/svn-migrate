@@ -7,10 +7,14 @@ to Github.
 Setup
 =====
 
-You need to have libsvn-dev and qt-sqk installed for svn2git to be compiled.
-Don't try this on a non-Linux OS, it's won't work.
+You need to have libsvn-dev, qmake and qt-sqk installed for svn2git to be
+compiled. Don't try this on a non-Linux OS, it won't work.
 
-Bootstrap the buildout::
+We'll need SVN mirrors of all three plone.org repositories. This will take
+about 13gb of space. The uncleaned Git exports take about 0.5gb and the final
+result only ways in at about 100mb.
+
+First install the OS package dependencies. Then bootstrap the buildout::
 
   $ python2.7 bootstrap.py -d
   $ bin/buildout
@@ -20,13 +24,14 @@ Migrate
 
 We use a three-step process for the migration. First get local SVN mirrors of
 all plone.org repositories (via svnsync or bootstrap with a svndump). Then for
-a subset of projects create local git exports. Finally create Git clones of
-the git exports, run cleanup actions on them and finally publish those to
-Github.
+a subset of projects create local git exports. Finally create copies of the
+Git exports, run cleanup actions on them and finally publish those to Github.
 
-The first step is extremely time consuming, but uses a sync approach, which
-makes it possible to update the data by new commits. The second and third step
-are destructive and require a `downtime` for the affected project.
+The first step is extremely time consuming. If you don't have a svndump it will
+take several days depending on your network connection and the load on the
+plone.org servers. But this step uses a sync approach, so you can update the
+data by new commits. The second and third step are destructive and require a
+`downtime/freeze` for the affected project.
 
 Detailed steps
 --------------
@@ -65,6 +70,10 @@ This will take about 15 minutes in total. After this is done we can prepare
 cleaned up Git repositories::
 
   $ bin/py do.py git-copy
+
+TODO: For the time being, we can publish them at a temp location::
+
+  $ sshsync repos/git/ hannosch@jarn.com:/home/hannosch/migrate/
 
 Todo
 ----
