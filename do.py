@@ -113,8 +113,6 @@ def git_copy(repo, repo_path, repo_url):
             os.chdir(git_path)
             # remove tags with revision specific information in them
             os.system('git tag -l | grep "@" | xargs git tag -d')
-            os.system('git branch | grep "historical-" | xargs git branch -D')
-            os.system('git branch | grep "plips-" | xargs git branch -D')
             os.system('git gc --aggressive --prune=now')
             # TODO test-prefix
             os.system('git remote add origin git@github.com:plone/'
