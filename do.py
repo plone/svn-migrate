@@ -3,6 +3,7 @@ import ConfigParser
 import os
 import os.path
 import shutil
+import subprocess
 
 REPOS = ('archetypes', 'collective', 'plone')
 REMOTE_SVN_BASE = 'http://svn.plone.org/svn/'
@@ -13,6 +14,7 @@ SVN_REPOS_PATH = os.path.join(cwd, 'repos', 'svn-mirror')
 SVN_EXPORT_PATH = os.path.join(cwd, 'repos', 'svn-export')
 GIT_REPOS_PATH = os.path.join(cwd, 'repos', 'git')
 AUTHORS_PATH = os.path.join(cwd, 'authors-map')
+PROJECTS_PATH = os.path.join(cwd, 'projects.cfg')
 
 parser = argparse.ArgumentParser(description='Do stuff!')
 parser.add_argument('command', choices=[
@@ -97,6 +99,9 @@ def git_copy(repo, repo_path, repo_url):
     if not os.path.isdir(mirror):
         print('Skipping copy of repository ' + repo)
         return
+    config = _create_config_parser()
+    config.read(PROJECTS_PATH)
+    projects = dict(config.items(repo))
     git_base_path = os.path.join(GIT_REPOS_PATH, repo)
     if not os.path.isdir(git_base_path):
         os.mkdir(git_base_path)
@@ -108,17 +113,33 @@ def git_copy(repo, repo_path, repo_url):
         if os.path.isdir(git_path):
             print('Skipping copy of ' + name)
             continue
+        print('Processing: %s' % name)
         shutil.copytree(bare_git_path, git_path)
+        # get a list of current active svn branches
+        remote_svn_url = projects.get(name)
+        svn_url = remote_svn_url.replace(REMOTE_SVN_BASE + repo, repo_url)
+        output = subprocess.check_output(['svn', 'ls', svn_url + '/branches'])
+        svn_branches = [o.strip().rstrip('/') for o in
+            output.split('\n') if o.strip()]
         try:
             os.chdir(git_path)
             # remove tags with revision specific information in them
             os.system('git tag -l | grep "@" | xargs git tag -d')
-            os.system('git gc --aggressive --prune=now')
+            output = subprocess.check_output(['git', 'branch', '--no-color'])
+            git_branches = [o.strip() for o in output.split('\n') if o.strip()]
+            git_branches = [b.replace('* ', '') for b in git_branches]
+            extra_branches = set(git_branches) - set(svn_branches)
+            extra_branches = extra_branches - set(['master'])
+            for e in extra_branches:
+                os.system('git branch -D %s' % e)
+            print('Running garbage collection')
+            os.system('git gc --aggressive --prune=now --quiet')
             # TODO test-prefix
             os.system('git remote add origin git@github.com:plone/'
                 'test-%s.git' % name)
         finally:
             os.chdir(cwd)
+        print('Processed %s\n' % name)
 
 
 def main():
