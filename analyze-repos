@@ -1,0 +1,368 @@
+#!/usr/bin/env python
+# vim: ft=python
+
+verbose = 0
+svn_base = "http://svn.plone.org/svn"
+git_base = "http://migrate.jarn.com"
+pypi_base = "http://pypi.python.org/packages/source/"
+
+revisions = {
+    'collective': '240736',
+    'archetypes': '13676',
+    'plone': '50342',
+    }
+
+repos = {
+    'collective': [
+        "Products.ATContentTypes", # svn-externals
+        "Products.CMFDiffTool",
+        ("CMFDynamicViewFTI", "Products.CMFDynamicViewFTI"),
+        "Products.CMFEditions",
+        ("CMFFormController", "Products.CMFFormController"), # looks like this is borg
+        "Products.CMFPlacefulWorkflow",
+        ("CMFQuickInstallerTool", "Products.CMFQuickInstallerTool"),
+        "Products.CMFTestCase",
+        "Products.GroupUserFolder",
+        "Products.PasswordResetTool", # git checkout 2.0.6' returned exit status 1: error: pathspec '2.0.6' did not match any file(s) known to git.
+        ("PlacelessTranslationService", "Products.PlacelessTranslationService"),
+        ("PloneLanguageTool", "Products.PloneLanguageTool"), # 'git checkout 3.2.2' returned exit status 1: error: pathspec '3.2.2' did not match any file(s) known to git.
+        "Products.PlonePAS",
+        "Products.PloneTestCase", # Products.PloneTestCase setup command: Distribution contains no modules or packages for namespace package 'Products'
+        ("SecureMailHost", "Products.SecureMailHost"),
+        "Products.TinyMCE", # error in Products.TinyMCE setup command: Distribution contains no modules or packages for namespace package 'Products'
+        "Products.contentmigration",
+        "Products.i18ntestcase", # error in Products.i18ntestcase setup command: Distribution contains no modules or packages for namespace package 'Products'
+        ("statusmessages", "Products.statusmessages"),
+        ("borg/components/borg.localrole", "borg.localrole"), # warning: remote HEAD refers to nonexistent ref, unable to checkout.
+        "collective.monkeypatcher",
+        ("buildout/plone.recipe.alltests", "plone.recipe.alltests"),
+        ("buildout/plone.recipe.zeoserver", "plone.recipe.zeoserver"),
+        ("buildout/plone.recipe.zope2install", "plone.recipe.zope2install"),
+        ("buildout/plone.recipe.zope2instance", "plone.recipe.zope2instance"), # 'git checkout 4.1.7' returned exit status 1: error: pathspec '4.1.7' did not match any file(s) known to git.
+        ("buildout/plone.recipe.zope2zeoserver", "plone.recipe.zope2zeoserver"),
+        "txtfilter", # cant find release on pypi
+        "wicked",
+        ],
+    'archetypes': [
+        ("MoreFieldsAndWidgets/ATReferenceBrowserWidget", "Products.ATReferenceBrowserWidget"),
+        "Products.Archetypes", # 'git checkout 1.7.6' returned exit status 1: error: pathspec '1.7.6' did not match any file(s) known to git.
+        "Products.Marshall", # error in Products.Marshall setup command: Distribution contains no modules or packages for namespace package 'Products'
+        "Products.MimetypesRegistry", # error in Products.MimetypesRegistry setup command: Distribution contains no modules or packages for namespace package 'Products'
+        "Products.PortalTransforms", # error in Products.PortalTransforms setup command: Distribution contains no modules or packages for namespace package 'Products'
+        "Products.validation", # error in Products.validation setup command: Distribution contains no modules or packages for namespace package 'Products'
+        "archetypes.kss",
+        ],
+    'plone': [
+        "Plone", # 'git checkout 4.1rc3' returned exit status 1: error: pathspec '4.1rc3' did not match any file(s) known to git.
+        "Products.CMFPlone", # 'git checkout 4.1rc3' returned exit status 1: error: pathspec '4.1rc3' did not match any file(s) known to git.
+        "Products.ExtendedPathIndex", # Products.ExtendedPathIndex setup command: Distribution contains no modules or packages for namespace package 'Products'
+        "Products.LinguaPlone", # 'git checkout 4.0.3' returned exit status 1: error: pathspec '4.0.3' did not match any file(s) known to git.
+        ("ResourceRegistries", "Products.ResourceRegistries"),
+        "plone.app.blob",
+        "plone.app.caching",
+        "plone.app.content", # error in plone.app.content setup command: Distribution contains no modules or packages for namespace package 'plone'
+        "plone.app.contentmenu",
+        "plone.app.contentrules", # 'git checkout 2.1.3' returned exit status 1: error: pathspec '2.1.3' did not match any file(s) known to git.
+        "plone.app.controlpanel",
+        "plone.app.customerize",
+        "plone.app.discussion", # 'git checkout 2.0.4' returned exit status 1: error: pathspec '2.0.4' did not match any file(s) known to git.
+        "plone.app.folder",
+        "plone.app.form", # error in plone.app.form setup command: Distribution contains no modules or packages for namespace package 'plone'
+        "plone.app.i18n",
+        "plone.app.imaging",
+        "plone.app.iterate", # 'git checkout 2.1.2' returned exit status 1: error: pathspec '2.1.2' did not match any file(s) known to git.
+        "plone.app.jquerytools",
+        "plone.app.kss",
+        "plone.app.layout", # 'git checkout 2.1.6' returned exit status 1: error: pathspec '2.1.6' did not match any file(s) known to git.
+        "plone.app.linkintegrity",
+        "plone.app.openid",
+        "plone.app.portlets", # 'git checkout 2.1.5' returned exit status 1: error: pathspec '2.1.5' did not match any file(s) known to git.
+        "plone.app.redirector",
+        "plone.app.registry",
+        "plone.app.testing",
+        "plone.app.upgrade", # 'git checkout 1.1rc3' returned exit status 1: error: pathspec '1.1rc3' did not match any file(s) known to git.
+        "plone.app.users", # 'git checkout 1.1.1' returned exit status 1: error: pathspec '1.1.1' did not match any file(s) known to git.
+        "plone.app.uuid",
+        "plone.app.viewletmanager",
+        "plone.app.vocabularies",
+        "plone.app.workflow",
+        "plone.app.z3cform",
+        "plone.browserlayer",
+        "plone.cachepurging", # 'git checkout 1.0.1' returned exit status 1: error: pathspec '1.0.1' did not match any file(s) known to git.
+        "plone.caching",
+        "plone.contentrules",
+        "plone.fieldsets",
+        "plone.folder", # No such file or directory: 'README.txt'
+        "plone.i18n",
+        "plone.indexer",
+        "plone.intelligenttext",
+        "plone.keyring",
+        "plone.locking",
+        "plone.memoize",
+        "plone.openid",
+        "plone.outputfilters", # warning: sdist: standard file not found: should have one of README, README.txt
+        "plone.portlet.collection", # 'git checkout 2.0.2' returned exit status 1: error: pathspec '2.0.2' did not match any file(s) known to git.
+        "plone.portlet.static",
+        "plone.portlets",
+        "plone.protect", # error in plone.protect setup command: Distribution contains no modules or packages for namespace package 'plone'
+        "plone.registry", # sha1sum: plone.registry-1.0.zip: No such file or directory
+        "plone.scale", # sha1sum: plone.scale-1.2.2.zip: No such file or directory
+        "plone.session",
+        "plone.stringinterp",
+        "plone.supermodel", # 'git checkout 1.0.3' returned exit status 1: error: pathspec '1.0.3' did not match any file(s) known to git.
+        "plone.testing", # 'git checkout 4.0.1' returned exit status 1: error: pathspec '4.0.1' did not match any file(s) known to git.
+        "plone.theme",
+        "plone.uuid", # 'git checkout 1.0.1' returned exit status 1: error: pathspec '1.0.1' did not match any file(s) known to git.
+        "plonetheme.classic",
+        "plonetheme.sunburst",
+        ],
+    }
+
+
+
+import os
+import git
+import shlex
+import xmlrpclib
+import subprocess
+import pkg_resources
+
+
+pypi_client = xmlrpclib.ServerProxy('http://pypi.python.org/pypi')
+
+class CallException(Exception):
+
+    def __init__(self, err, out):
+        super(CallException, self).__init__(err)
+        self.out = out
+
+def call(cmd, cwd=None):
+    if cwd is None:
+        cwd = os.path.abspath(os.path.dirname(__file__))
+    if 'growlnotify' not in cmd and verbose > 2:
+        line('~% ' + cmd, 1)
+    out, err = subprocess.Popen(shlex.split(cmd),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            cwd=cwd,
+            ).communicate()
+    if err:
+        if 'growlnotify' not in cmd:
+            log(err)
+        raise CallException(err, out)
+    return out
+
+def log(txt):
+    call('growlnotify "Analyzing Repos" -m "' + txt + '"')
+
+def header(txt):
+    print
+    print '-'*len(txt)
+    print txt
+    print '-'*len(txt)
+    print
+
+def line(txt, level=0):
+    print ' '*level*4 + txt
+
+def sha_checklist(directory):
+    checklist = []
+    for root, dirs, files in os.walk(directory):
+        for names in files:
+            checklist.append(call('sha1sum '+os.path.join(root,names)).replace('svn-export-trunk', 'git-export-master'))
+    return checklist
+
+
+class Repo(object):
+
+    _svn_tags = None
+    _svn_branches = None
+    _git_tags = None
+    _git_branches = None
+    _last_version = None
+
+    def __init__(self, _type, name):
+        self.type = _type
+        if type(name) in (list, tuple):
+            self.svn_name = name[0]
+            self.git_name = name[1]
+        else:
+            self.svn_name = self.git_name = name
+
+        self.base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), self.git_name))
+        if not os.path.exists(self.base_dir):
+            os.mkdir(self.base_dir)
+
+        if not os.path.exists(os.path.join(self.base_dir, 'git')):
+            call("git clone %s/%s/%s git" % (git_base, self.type, self.git_name), self.base_dir)
+        self.git_repo = git.Repo(os.path.join(self.base_dir, 'git'))
+
+    def svn_export_trunk(self):
+        if not os.path.exists(os.path.join(self.base_dir, 'svn-export-trunk')):
+            call("svn export %s/%s/%s/trunk svn-export-trunk" % (svn_base, self.type, self.svn_name), self.base_dir)
+
+    def svn_export_last_version(self):
+        if not os.path.exists(os.path.join(self.base_dir, 'svn-export-'+self.last_version)):
+            call("svn export %s/%s/%s/tags/%s svn-export-%s" % (svn_base, self.type, self.svn_name, self.last_version, self.last_version), self.base_dir)
+
+#        if not os.path.exists(os.path.join(self.base_dir, 'git-export-'+self.last_version)):
+#            f = open(os.path.join(self.base_dir, 'git-export-%s.zip' % self.last_version), 'w+')
+#            self.git_repo.archive(f, self.last_version, 'git-export-%s/' % self.last_version, format='zip')
+#            f.close()
+#            call("unzip git-export-%s.zip" % (self.last_version), self.base_dir)
+#            call("rm git-export-%s.zip" % (self.last_version), self.base_dir)
+
+        if not os.path.exists(os.path.join(self.base_dir, 'git-checkout-'+self.last_version)):
+            call("git clone git/ git-checkout-%s" % (self.last_version), self.base_dir)
+
+        self.git_repo2 = git.Repo(os.path.join(self.base_dir, 'git-checkout-'+self.last_version))
+        self.git_repo2.git.checkout(self.last_version)
+
+        if not os.path.exists(os.path.join(self.base_dir, 'git-export-master')):
+            f = open(os.path.join(self.base_dir, 'git-export-master.zip'), 'w+')
+            self.git_repo.archive(f, self.last_version, 'git-export-master/', format='zip')
+            f.close()
+            call("unzip git-export-master.zip", self.base_dir)
+            call("rm git-export-master.zip", self.base_dir)
+
+
+    @property
+    def svn_tags(self):
+        if self._svn_tags is None:
+            self._svn_tags = set([i[:-1] for i in call("svn ls %s/%s/%s/tags" % (
+                    svn_base, self.type, self.svn_name)).split()])
+        return self._svn_tags
+
+    @property
+    def svn_branches(self):
+        if self._svn_branches is None:
+            self._svn_branches = set([i[:-1] for i in call("svn ls %s/%s/%s/branches" % (
+                    svn_base, self.type, self.svn_name)).split()])
+        return self._svn_branches
+
+    @property
+    def git_tags(self):
+        if self._git_tags is None:
+            self._git_tags = set([i[51:] for i in self.git_repo.git.ls_remote("origin", tags=True).split('\n')])
+        return self._git_tags
+
+    @property
+    def git_branches(self):
+        if self._git_branches is None:
+            self._git_branches = set([i[52:] for i in self.git_repo.git.ls_remote("origin", heads=True).split('\n')])
+            self._git_branches.remove('master')
+        return self._git_branches
+
+    @property
+    def last_version(self):
+        if self._last_version is None:
+            self._last_version = sorted(self.svn_tags, key=pkg_resources.parse_version)[-1]
+        return self._last_version
+
+    def compare_all(self):
+        self.compare_tags()
+        self.compare_branches()
+        self.compare_master_and_trunk()
+        self.compare_last_release()
+
+    def compare_tags(self):
+        line("- Are all tags preserved?", 1)
+        diff = list(set(self.svn_tags) - set(self.git_tags))
+        if diff:
+            line("svn: "+str(self.svn_tags), 2)
+            line("git: "+str(self.git_tags), 2)
+        else:
+            line("everything ok", 2)
+
+    def compare_branches(self):
+        line("- Are all branches preserved?", 1)
+        diff = list(self.svn_branches - self.git_branches)
+        if diff:
+            line("svn: "+str(self.svn_branches), 2)
+            line("git: "+str(self.git_branches), 2)
+            line("diff: "+str(diff), 2)
+        else:
+            line("everything ok", 2)
+
+    def compare_master_and_trunk(self):
+        line("- Do the contents of the Git master match the SVN trunk.", 1)
+        f = open(os.path.join(self.base_dir, 'git-export-master', 'svn-sha-checklist.txt'), 'w+')
+        f.writelines(sha_checklist(os.path.join(self.base_dir, 'svn-export-trunk')))
+        f.close()
+
+        try:
+            diff = None
+            call('sha1sum --quiet -c svn-sha-checklist.txt', os.path.join(self.base_dir, 'git-export-master'))
+        except Exception, e:
+            if 'sha1sum: WARNING:' in str(e):
+                diff = e.out
+            else:
+                raise e
+
+        if diff:
+            #if verbose > 0:
+            #    for i in diff.split('\n'):
+            for i in diff.split('\n'):
+                if i:
+                    line(i, 2)
+        else:
+            line("everything ok", 2)
+
+    def compare_last_release(self):
+        line("- Do a checkout of the last tag, do a local sdist release and compare "
+             "the result with the last release on PyPi.", 1)
+        items = pypi_client.release_urls(self.git_name, self.last_version)
+        if items == []:
+            line("NO RELEASE!!!", 2)
+            return
+        for item in items:
+            if item['python_version'] == 'source':
+                break
+        filename = item['filename']
+        url = item['url']
+        if url.endswith('.zip'):
+            format_ = 'zip'
+        elif url.endswith('.tar.gz'):
+            format_ = 'gztar'
+        else:
+            import ipdb; ipdb.set_trace()
+        if not os.path.exists(os.path.join(self.base_dir, filename)):
+            call("wget -q %s" % (url), self.base_dir)
+        #call("python setup.py sdist --format=%s" % (format_),
+        #        os.path.join(self.base_dir, 'git-export-%s' % self.last_version))
+        call("python setup.py sdist --format=%s" % (format_),
+                os.path.join(self.base_dir, 'git-checkout-%s' % self.last_version))
+        svn_sha = call("sha1sum "+filename, self.base_dir)
+        #git_sha = call("sha1sum "+filename, os.path.join(self.base_dir, 'git-export-'+self.last_version, 'dist'))
+        git_sha = call("sha1sum "+filename, os.path.join(self.base_dir, 'git-checkout-'+self.last_version, 'dist'))
+        if svn_sha != git_sha:
+            if format_ == 'zip':
+                diff = call("./../diffzips.pl %s git-checkout-%s/dist/%s --no-color-diff"% (filename, self.last_version, filename), self.base_dir)
+                if diff == '':
+                    diff = "everything ok"
+            else:
+                diff = 'uknown format to compare'
+            for i in diff.split('\n'):
+                if i:
+                    line(i, 2)
+        else:
+            line("everything ok", 2)
+
+
+def main():
+    i = 1
+    for repo_type in repos.keys():
+        header('Analyzing "'+repo_type+'" repositories')
+        for repo_name in repos[repo_type]:
+            line('%s.) %s' % (i, repo_name))
+
+            repo = Repo(repo_type, repo_name)
+            repo.compare_all()
+
+            i += 1
+
+    print
+    print
+
+if __name__ == '__main__':
+    main()
