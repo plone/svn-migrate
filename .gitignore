@@ -9,3 +9,5 @@ parts/
 repos/git/*
 repos/svn-export/*
 repos/svn-mirror/*
+include/
+lib/
