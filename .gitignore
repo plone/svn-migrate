@@ -1,11 +1,5 @@
 .*
-authors.txt
-authors-*
 bin/
-eggs/
-git-svn-abandon/
-svn2git/
-parts/
 local
 repos/
 include/

@@ -1,1 +1,0 @@
-# This directory contains the cleaned up Git repositories
