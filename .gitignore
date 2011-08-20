@@ -6,8 +6,7 @@ eggs/
 git-svn-abandon/
 svn2git/
 parts/
-repos/git/*
-repos/svn-export/*
-repos/svn-mirror/*
+local
+repos/
 include/
 lib/

@@ -7,21 +7,36 @@ to Github.
 Setup
 =====
 
-You need to have libsvn-dev, qmake and qt-sqk installed for svn2git to be
-compiled. Don't try this on a non-Linux OS, it won't work.
+We assume debian system.
 
-We'll need SVN mirrors of all three plone.org repositories. This will take
-about 13gb of space. The uncleaned Git exports take about 0.5gb and the final
-result only ways in at about 100mb.
+First we clone this svn-migrate project.
 
-First install the OS package dependencies. Then bootstrap the buildout::
+::
 
-  $ python2.7 bootstrap.py -d
-  $ bin/buildout
+    ~/ % git clone git://github.com/plone/svn-migrate.git
+    ~/ % cd svn-migrate
+
+Next we create virtualenv and bootstrap environment. Use python 2.7 since I
+didn't test with other versions.
+
+::
+
+    ~/svn-migrate % virtualenv-2.7 --no-site-packages 
+    ~/svn-migrate % . bin/activate
+    (svn-migrate) ~/svn-migrate % pip install -r requirements.txt
+
+Install svn2git.
+
+::
+
+    (svn-migrate) ~/svn-migrate % sudo apt-get install git-core git-svn ruby rubygems
+    (svn-migrate) ~/svn-migrate % sudo gem install svn2git --source http://gemcutter.org
+
 
 Migrate
 =======
 
+#TODO: need to rewrite this section
 We use a three-step process for the migration. First get local SVN mirrors of
 all plone.org repositories (via svnsync or bootstrap with a svndump). Then for
 a subset of projects create local git exports. Finally create copies of the
@@ -36,77 +51,30 @@ data by new commits. The second and third step are destructive and require a
 Detailed steps
 --------------
 
-Prepare local SVN mirrors::
+1. Prepare local SVN mirrors and sync the data, which will take some days to
+finish. But if you run afterwards it will only update missing commits. So
+only initial run is exspensive.::
 
-  $ bin/py do.py svn-init
-
-Now sync the data, which will take some hours to days::
-
-  $ bin/py do.py svn-sync
+    (svn-migrate) ~/svn-migrate % ./migrate sync
 
 If you need to Ctrl-C the sync process, you might be greeted with an error
-message next time::
+message next time.::
 
   Failed to get lock on destination repos, currently held by...
 
-You can get rid of the lock by calling::
+You can get rid of the lock by calling.::
 
   $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
 
-Next up we need to get a mapping of SVN to Github usernames::
+4. Get authors from svn projects (via plone's ldap). Migrate to new git
+repositories or if this is not the first time, also update/rebase git
+repositories with changes from svn.::
 
-  $ bin/py do.py svn-authors
+    (svn-migrate) ~/svn-migrate % ./migrate mirror
 
-TODO: Currently this creates a dummy list of usernames for all users that
-committed data to any of the repositories. We only want to map the users that
-committed to one of the affected projects. Maybe a helpful command is:
-`git log --all --format='%aN' | sort -u`
+5. Publish repos to new location (github.com/plone).::
 
-Now we want to run the actual export::
+    (svn-migrate) ~/svn-migrate % ./migrate publish
 
-  $ bin/py do.py svn-export
 
-This will take about 15 minutes in total. After this is done we can prepare
-cleaned up Git repositories::
 
-  $ bin/py do.py git-copy
-
-TODO: For the time being, we can publish them at a temp location::
-
-  $ sshsync repos/git/ hannosch@jarn.com:/home/hannosch/migrate/
-
-Todo
-----
-
-Write more svn2git rules, examples and docs at:
-
-- http://gitorious.org/svn2git/svn2git/trees/master/samples
-- http://gitorious.org/svn2git/kde-ruleset/trees/master
-- http://techbase.kde.org/Projects/MoveToGit/UsingSvn2Git
-
-Especially this remark::
-
-  Also try grepping the output from svn2git for the string '"copy from"'
-  (with the double quotation marks). This will give you a list of
-  revisions/paths that svn2git could not detect the origin of. That is
-  someone did a svn cp/mv and the old path is not in the generated git
-  repository.
-
-Validate the Git data:
-
-- run setup.py sdist on tags and compare to pypi uploads?
-- check number of tags / branches
-- `diff -ur` trunk / master and tags?
-
-Publish Git repos to Github:
-
-- Create Git repository
-- Fix default Git repository settings (no issue tracker/wiki, teams)
-- git push --all
-- git push --tags
-
-Look at http://pypi.python.org/pypi/github2 for talking to the Github API.
-
-Remove from SVN:
-
-- svn rm <svn base url>

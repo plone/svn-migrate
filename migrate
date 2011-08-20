@@ -1,0 +1,70 @@
+#!bin/python
+
+import os
+import shlex
+import urllib2
+
+from argh import arg
+from argh import ArghParser
+
+from subprocess import check_call
+
+
+def call(cmd, *arg, **kw):
+    #print "COMMAND: " + cmd
+    return check_call(shlex.split(cmd), *arg, **kw)
+
+@arg('--repos', default='plone;collective;archetypes')
+@arg('--local-basepath', default=os.path.join(os.path.dirname(__file__), 'repos'))
+@arg('--remote-baseurl', default='http://svn.plone.org/svn/')
+def sync(args):
+
+    if not os.path.exists(os.path.join(args.local_basepath, 'svn-mirror')):
+        call('mkdir %s' % os.path.join(args.local_basepath, 'svn-mirror'))
+    
+    # we initialize repo folders
+    for repo in args.repos.split(';'):
+        repo = repo.strip()
+        if not repo: continue
+
+        repo_localpath = os.path.abspath(os.path.join(args.local_basepath, 'svn-mirror', repo))
+        repo_remoteurl = urllib2.urlparse.urljoin(args.remote_baseurl, repo)
+
+        if not os.path.isdir(repo_localpath):
+            call("svnadmin create %s" % repo_localpath)
+            hook_path = os.path.join(repo_localpath, 'hooks', 'pre-revprop-change')
+            with open(hook_path, 'w') as fd:
+                fd.writelines(['#!/bin/sh\n', 'exit 0'])
+            call('chmod 755 ' + hook_path)
+            call('svnsync init file://%s %s' % (repo_localpath, repo_remoteurl))
+
+    # we start syncing the commits
+    for repo in args.repos.split(';'):
+        repo = repo.strip()
+        if not repo: continue
+
+        repo_localpath = os.path.abspath(os.path.join(args.local_basepath, 'svn-mirror', repo))
+        repo_remoteurl = urllib2.urlparse.urljoin(args.remote_baseurl, repo)
+
+        call('svn propget svn:sync-last-merged-rev --revprop -r 0 file://%s' % repo_localpath)
+        call('svnsync --non-interactive sync file://%s' % repo_localpath)
+        call('svnadmin pack %s' % repo_localpath)
+
+
+def mirror():
+    pass
+
+def publish():
+   pass
+
+
+parser = ArghParser()
+parser.add_commands([
+    sync,
+    mirror,
+    publish,
+    ])
+
+
+if __name__ == '__main__':
+    parser.dispatch()
