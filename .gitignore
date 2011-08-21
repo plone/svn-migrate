@@ -1,6 +1,9 @@
 .*
+!.gitignore
+!.gitmodules
 bin/
 local
 repos/
 include/
 lib/
+share/

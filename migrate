@@ -2,17 +2,27 @@
 
 import os
 import shlex
+import json
 import urllib2
+import ConfigParser
+import requests
 
 from argh import arg
 from argh import ArghParser
 
-from subprocess import check_call
+from subprocess import Popen
+from subprocess import PIPE
+from xml.etree import ElementTree
+
+
+GITHUB = 'https://api.github.com'
 
 
 def call(cmd, *arg, **kw):
-    #print "COMMAND: " + cmd
-    return check_call(shlex.split(cmd), *arg, **kw)
+    print "COMMAND: " + cmd
+    return Popen(shlex.split(cmd), *arg, **kw).communicate()[0]
+
+
 
 @arg('--repos', default='plone;collective;archetypes')
 @arg('--local-basepath', default=os.path.join(os.path.dirname(__file__), 'repos'))
@@ -51,11 +61,56 @@ def sync(args):
         call('svnadmin pack %s' % repo_localpath)
 
 
-def mirror():
-    pass
+@arg('--projects.cfg', default='projects.cfg')
+@arg('--basepath', default=os.path.join(os.path.dirname(__file__), 'repos'))
+@arg('--prefix', default='tmp-')
+def mirror(args):
 
-def publish():
-   pass
+    def svn_log(url):
+        result = call('svn log --stop-on-copy --xml %s' % url, stdout=PIPE)
+        parser = ElementTree.XMLTreeBuilder()
+        parser.feed(''.join(result))
+        return parser.close()
+
+    projects = ConfigParser.SafeConfigParser()
+    projects.read('projects.cfg')
+    for project_name in projects.sections():
+
+        project_url = 'file://' + os.path.abspath(os.path.join(args.basepath, 'svn-mirror', projects.get(project_name, 'source')))
+        destination_path = os.path.abspath(os.path.join(args.basepath, 'git', project_name))
+
+        options = '--revision '+list(svn_log(project_url).getiterator('logentry'))[-1].attrib['revision']
+        if projects.has_option(project_name, 'options'):
+            options += ' ' + projects.get(project_name, 'options')
+
+        if not os.path.exists(destination_path):
+            call('mkdir %s -p' % destination_path)
+            call('svn2git %s %s -vvvvvv' % (project_url, options), cwd=destination_path)
+            call('git remote add origin git@github.com:plone/%s%s.git' % (args.prefix, project_name), cwd=destination_path)
+        else:
+            call('svn2git --rebase', cwd=destination_path)
+
+@arg('--github-username', required=True)
+@arg('--github-password', required=True)
+@arg('--projects.cfg', default='projects.cfg')
+@arg('--basepath', default=os.path.join(os.path.dirname(__file__), 'repos'))
+@arg('--prefix', default='tmp-')
+def publish(args):
+    projects = ConfigParser.SafeConfigParser()
+    projects.read('projects.cfg')
+
+    with requests.session(auth=(args.github_username, args.github_password)) as session:
+        github_repos = [i['name'] for i in json.loads(session.get(GITHUB+'/orgs/plone/repos').content)]
+
+        for project_name in projects.sections():
+            destination_path = os.path.abspath(os.path.join(args.basepath, 'git', project_name))
+
+            project_fullname = args.prefix + project_name
+            if project_fullname not in github_repos:
+                session.post(GITHUB+'/orgs/plone/repos', json.dumps({'name': project_fullname}))
+
+            call('git push --all', cwd=destination_path)
+            call('git push --tags', cwd=destination_path)
 
 
 parser = ArghParser()
