@@ -36,44 +36,30 @@ data by new commits. The second and third step are destructive and require a
 Detailed steps
 --------------
 
-Prepare local SVN mirrors::
+1. Prepare local SVN mirrors and sync the data, which will take some days to
+finish. But if you run afterwards it will only update missing commits. So
+only initial run is exspensive.::
 
-  $ bin/py do.py svn-init
-
-Now sync the data, which will take some hours to days::
-
-  $ bin/py do.py svn-sync
+  $ ./migrate sync
 
 If you need to Ctrl-C the sync process, you might be greeted with an error
-message next time::
+message next time.::
 
   Failed to get lock on destination repos, currently held by...
 
-You can get rid of the lock by calling::
+You can get rid of the lock by calling.::
 
   $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
 
-Next up we need to get a mapping of SVN to Github usernames::
+2. Get authors from svn projects (via plone's ldap). Migrate to new git
+repositories or if this is not the first time, also update/rebase git
+repositories with changes from svn.::
 
-  $ bin/py do.py svn-authors
+  $ ./migrate convert
 
-TODO: Currently this creates a dummy list of usernames for all users that
-committed data to any of the repositories. We only want to map the users that
-committed to one of the affected projects. Maybe a helpful command is:
-`git log --all --format='%aN' | sort -u`
+3. Publish repos to new location (github.com/plone).::
 
-Now we want to run the actual export::
-
-  $ bin/py do.py svn-export
-
-This will take about 15 minutes in total. After this is done we can prepare
-cleaned up Git repositories::
-
-  $ bin/py do.py git-copy
-
-TODO: For the time being, we can publish them at a temp location::
-
-  $ sshsync repos/git/ hannosch@jarn.com:/home/hannosch/migrate/
+  $ ./migrate publish
 
 Todo
 ----

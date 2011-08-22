@@ -1,1 +1,0 @@
-# This directory contains svn2git exports of all relevant projects
