@@ -92,54 +92,58 @@ def sync(args):
         call('svnadmin pack %s' % svn_repo_mirror)
 
 
-@arg('--repos', default=None)
-@arg('--basepath', default=path(CWD, 'repos'))
-@arg('--svn-all-fast-export', default=path(CWD, 'svn2git', 'svn-all-fast-export'))
+@arg('--rules-file', default=None)
 @arg('--authors', default=path(CWD, 'authors.cfg'))
+@arg('--svn-all-fast-export', default=path(CWD, 'svn2git', 'svn-all-fast-export'))
+@arg('--svn-repos', default=SVN_REPOS)
+@arg('--repos-path', default=path(CWD, 'repos'))
 def svnexport(args):
-    if args.repos is None:
-        repos = os.listdir(path(args.basepath, 'svn-mirror'))
-    else:
-        repos = args.repos.split(';')
 
-    for repo in repos:
+    for svn_repo in args.svn_repos.split(';'):
+        svn_repo = svn_repo.strip()
+        if not svn_repo:
+            continue
 
-        rules = path(CWD, 'rules-%s.cfg' % repo)
-        svn_mirror = path(args.basepath, 'svn-mirror', repo)
-        svn_export = path(args.basepath, 'svn-export', repo)
+        svn_repo_mirror = path(args.repos_path, 'svn-mirror', svn_repo)
+        svn_repo_export = path(args.repos_path, 'svn-export', svn_repo)
 
-        if not os.path.isdir(svn_export):
-            call('mkdir %s -p' % svn_export)
+        if args.rules_file is None:
+            rules = path(CWD, 'rules-%s.cfg' % svn_repo)
+        else:
+            rules = path(args.rules_file)
+
+        if not os.path.isdir(svn_repo_export):
+            call('mkdir %s -p' % svn_repo_export)
 
         call('%s --identity-map %s --rules %s --add-metadata %s' % (
-                args.svn_all_fast_export,
-                args.authors,
-                rules,
-                svn_mirror),
-             cwd=svn_export)
-        # TODO: grep output for possible failures
+                args.svn_all_fast_export, args.authors, rules, svn_repo_mirror),
+                cwd=svn_repo_export)
 
 
 @arg('--repos', default=None)
 @arg('--projects', default=path(CWD, 'projects.cfg'))
 @arg('--remote-baseurl', default='http://svn.plone.org/svn/')
-@arg('--basepath', default=path(CWD, 'repos'))
+@arg('--repos_path', default=path(CWD, 'repos'))
 @arg('--prefix', default='test-')
 def gitcopy(args):
     config = ConfigParser.RawConfigParser()
     config.optionxform = lambda s: s
     config.read(args.projects)
 
+    git_repos = []
+    if args.git_repos is not None:
+        git_repos = args.git_repos.split(';')
+
     if args.repos is None:
-        repos = os.listdir(path(args.basepath, 'svn-mirror'))
+        repos = os.listdir(path(args.repos_path, 'svn-mirror'))
     else:
         repos = args.repos.split(';')
 
     for repo in repos:
 
-        svn_mirror = path(args.basepath, 'svn-mirror', repo)
-        svn_export = path(args.basepath, 'svn-export', repo)
-        git = path(args.basepath, 'git', repo)
+        svn_mirror = path(args.repos_path, 'svn-mirror', repo)
+        svn_export = path(args.repos_path, 'svn-export', repo)
+        git = path(args.repos_path, 'git', repo)
 
         if not os.path.isdir(git):
             call('mkdir %s -p' % git)
@@ -193,21 +197,21 @@ def gitcopy(args):
 @arg('--repos', default=None)
 @arg('--github-username', required=True)
 @arg('--github-password', required=True)
-@arg('--basepath', default=path(CWD, 'repos'))
+@arg('--repos_path', default=path(CWD, 'repos'))
 def publish(args):
     with requests.session(auth=(args.github_username, args.github_password)) as session:
 
         github_repos = [i['name'] for i in json.loads(session.get(GITHUB+'/orgs/plone/repos').content)]
 
         if args.repos is None:
-            repos = os.listdir(path(args.basepath, 'svn-mirror'))
+            repos = os.listdir(path(args.repos_path, 'svn-mirror'))
         else:
             repos = args.repos.split(';')
 
         for repo in repos:
-            for item in os.listdir(path(args.basepath, 'git', repo)):
+            for item in os.listdir(path(args.repos_path, 'git', repo)):
 
-                item_path = path(args.basepath, 'git', repo, item)
+                item_path = path(args.repos_path, 'git', repo, item)
             
                 out = call('git remote -v', cwd=item_path, stdout=PIPE)
                 item_name = out.split('\n')[0].split()[1][len('git@github.com:plone/'):-len('.git')]
@@ -226,7 +230,7 @@ def publish(args):
 @arg('--repos', default=None)
 @arg('--projects', default=path(CWD, 'projects.cfg'))
 @arg('--remote-baseurl', default='http://svn.plone.org/svn/')
-@arg('--basepath', default=path(CWD, 'repos'))
+@arg('--repos_path', default=path(CWD, 'repos'))
 @arg('--prefix', default='test-')
 def analyze(args):
 
@@ -243,23 +247,23 @@ def analyze(args):
     def compare_master_and_trunk(item, repo, svn_url):
         line("- Do the contents of the Git master match the SVN trunk.", 1)
 
-        svn_trunk = path(args.basepath, 'svn-trunk', repo, item)
-        git_master = path(args.basepath, 'git-master', repo, item)
+        svn_trunk = path(args.repos_path, 'svn-trunk', repo, item)
+        git_master = path(args.repos_path, 'git-master', repo, item)
 
         if not os.path.isdir(svn_trunk):
             call('mkdir %s -p ' % path(svn_trunk, '..'))
             call('svn export %s/trunk %s' % (svn_url, svn_trunk))
         if not os.path.isdir(git_master):
             call('mkdir %s -p ' % path(git_master, '..'))
-            call('git clone %s %s' % (path(args.basepath, 'git', repo, item), item), cwd=path(git_master, '..'))
+            call('git clone %s %s' % (path(args.repos_path, 'git', repo, item), item), cwd=path(git_master, '..'))
 
-        f = open(path(args.basepath, 'svn-trunk', 'sha1sum-checklist-%s.txt' % item), 'w+')
+        f = open(path(args.repos_path, 'svn-trunk', 'sha1sum-checklist-%s.txt' % item), 'w+')
         f.writelines([i.replace('svn-trunk', 'git-master') for i in sha_checklist(svn_trunk)])
         f.close()
 
         try:
             diff = None
-            diff = call('sha1sum --quiet -c %s' % path(args.basepath, 'svn-trunk', 'sha1sum-checklist-%s.txt' % item), cwd=git_path, stdout=PIPE, stderr=PIPE)
+            diff = call('sha1sum --quiet -c %s' % path(args.repos_path, 'svn-trunk', 'sha1sum-checklist-%s.txt' % item), cwd=git_path, stdout=PIPE, stderr=PIPE)
         except Exception, e:
             if 'sha1sum: WARNING:' in str(e):
                 diff = e.out
@@ -285,20 +289,20 @@ def analyze(args):
 
     i = 1
     if args.repos is None:
-        repos = os.listdir(path(args.basepath, 'svn-mirror'))
+        repos = os.listdir(path(args.repos_path, 'svn-mirror'))
     else:
         repos = args.repos.split(';')
 
     for repo in repos:
         projects = dict(config.items(repo))
         header('Analyzing "' + repo + '" repository')
-        for item in os.listdir(path(args.basepath, 'git', repo)):
+        for item in os.listdir(path(args.repos_path, 'git', repo)):
 
             line('%s.) %s' % (i, item))
             i += 1
 
             ## svn tags and branches
-            svn_mirror = path(args.basepath, 'svn-mirror', repo)
+            svn_mirror = path(args.repos_path, 'svn-mirror', repo)
             svn_url = projects.get(item).replace(args.remote_baseurl+repo, 'file://'+svn_mirror)
             output = call('svn ls ' + svn_url + '/branches', stdout=PIPE)
             svn_branches = [o.strip().rstrip('/') for o in output.split('\n') if o.strip()]
@@ -306,7 +310,7 @@ def analyze(args):
             svn_tags = [o.strip().rstrip('/') for o in output.split('\n') if o.strip()]
 
             ## git tags and breanches
-            git_path = path(args.basepath, 'git', repo, item)
+            git_path = path(args.repos_path, 'git', repo, item)
             output = call('git branch --no-color', cwd=git_path, stdout=PIPE)
             git_branches = [o.strip() for o in output.split('\n') if o.strip()]
             git_branches = [b.replace('* ', '') for b in git_branches]
