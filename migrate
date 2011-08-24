@@ -5,7 +5,6 @@ import os
 import shlex
 import json
 import shutil
-import urllib2
 import xmlrpclib
 import ConfigParser
 import requests
@@ -19,6 +18,7 @@ from xml.etree import ElementTree
 
 
 CWD = os.path.dirname(__file__)
+SVN_REPOS = 'plone;collective;archetypes'
 GITHUB = 'https://api.github.com'
 VERSION_RE = re.compile(r'^(plone|v)?[\d._-]+'
     '(alpha|beta|branch|rc|RC|final|a|b|c|x)?(\d)*$')
@@ -54,40 +54,42 @@ def sha_checklist(directory):
 # 
 # COMMANDS
 
-@arg('--repos', default='plone;collective;archetypes')
-@arg('--local-basepath', default=path(CWD, 'repos'))
-@arg('--remote-baseurl', default='http://svn.plone.org/svn/')
+@arg('--svn-base-url', default='http://svn.plone.org/svn/')
+@arg('--svn-repos', default=SVN_REPOS)
+@arg('--repos-path', default=path(CWD, 'repos'))
 def sync(args):
-    if not os.path.exists(os.path.join(args.local_basepath, 'svn-mirror')):
-        call('mkdir %s' % os.path.join(args.local_basepath, 'svn-mirror'))
+
+    svn_mirror_path = path(args.repos_path, 'svn-mirror')
+    if not os.path.exists(svn_mirror_path):
+        call('mkdir %s' % svn_mirror_path)
     
     # we initialize repo folders
-    for repo in args.repos.split(';'):
-        repo = repo.strip()
-        if not repo: continue
+    for svn_repo in args.svn_repos.split(';'):
+        svn_repo = svn_repo.strip()
+        if not svn_repo:
+            continue
 
-        repo_localpath = path(args.local_basepath, 'svn-mirror', repo)
-        repo_remoteurl = urllib2.urlparse.urljoin(args.remote_baseurl, repo)
-
-        if not os.path.isdir(repo_localpath):
-            call("svnadmin create %s" % repo_localpath)
-            hook_path = path(repo_localpath, 'hooks', 'pre-revprop-change')
+        svn_repo_mirror = path(svn_mirror_path, svn_repo)
+        svn_repo_remote = '%s/%s' % (args.svn_base_url, svn_repo)
+        if not os.path.isdir(svn_repo_mirror):
+            call("svnadmin create %s" % svn_repo_mirror)
+            hook_path = path(svn_repo_mirror, 'hooks', 'pre-revprop-change')
             with open(hook_path, 'w') as fd:
                 fd.writelines(['#!/bin/sh\n', 'exit 0'])
             call('chmod 755 ' + hook_path)
-            call('svnsync init file://%s %s' % (repo_localpath, repo_remoteurl))
+            call('svnsync init file://%s %s' % (svn_repo_mirror, svn_repo_remote))
 
     # we start syncing the commits
-    for repo in args.repos.split(';'):
-        repo = repo.strip()
-        if not repo: continue
+    for svn_repo in args.svn_repos.split(';'):
+        svn_repo = svn_repo.strip()
+        if not svn_repo:
+            continue
 
-        repo_localpath = path(args.local_basepath, 'svn-mirror', repo)
-        repo_remoteurl = urllib2.urlparse.urljoin(args.remote_baseurl, repo)
-
-        call('svn propget svn:sync-last-merged-rev --revprop -r 0 file://%s' % repo_localpath)
-        call('svnsync --non-interactive sync file://%s' % repo_localpath)
-        call('svnadmin pack %s' % repo_localpath)
+        header('Syncing %s repository' % svn_repo)
+        svn_repo_mirror = path(svn_mirror_path, svn_repo)
+        call('svn propget svn:sync-last-merged-rev --revprop -r 0 file://%s' % svn_repo_mirror)
+        call('svnsync --non-interactive sync file://%s' % svn_repo_mirror)
+        call('svnadmin pack %s' % svn_repo_mirror)
 
 
 @arg('--repos', default=None)
