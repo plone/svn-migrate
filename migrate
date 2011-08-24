@@ -90,11 +90,17 @@ def sync(args):
         call('svnadmin pack %s' % repo_localpath)
 
 
+@arg('--repos', default=None)
 @arg('--basepath', default=path(CWD, 'repos'))
 @arg('--svn-all-fast-export', default=path(CWD, 'svn2git', 'svn-all-fast-export'))
 @arg('--authors', default=path(CWD, 'authors.cfg'))
 def svnexport(args):
-    for repo in os.listdir(path(args.basepath, 'svn-mirror')):
+    if args.repos is None:
+        repos = os.listdir(path(args.basepath, 'svn-mirror'))
+    else:
+        repos = args.repos.split(';')
+
+    for repo in repos:
 
         rules = path(CWD, 'rules-%s.cfg' % repo)
         svn_mirror = path(args.basepath, 'svn-mirror', repo)
@@ -112,6 +118,7 @@ def svnexport(args):
         # TODO: grep output for possible failures
 
 
+@arg('--repos', default=None)
 @arg('--projects', default=path(CWD, 'projects.cfg'))
 @arg('--remote-baseurl', default='http://svn.plone.org/svn/')
 @arg('--basepath', default=path(CWD, 'repos'))
@@ -121,7 +128,13 @@ def gitcopy(args):
     config.optionxform = lambda s: s
     config.read(args.projects)
 
-    for repo in os.listdir(path(args.basepath, 'svn-mirror')):
+    if args.repos is None:
+        repos = os.listdir(path(args.basepath, 'svn-mirror'))
+    else:
+        repos = args.repos.split(';')
+
+    for repo in repos:
+
         svn_mirror = path(args.basepath, 'svn-mirror', repo)
         svn_export = path(args.basepath, 'svn-export', repo)
         git = path(args.basepath, 'git', repo)
@@ -163,7 +176,7 @@ def gitcopy(args):
                 extra_branches = extra_branches - set(['master'])
                 for e in extra_branches:
                     match = VERSION_RE.match(e)
-                    if match is None:
+                    if match is None or e.startswith('master@'):
                         call('git branch -D %s' % e, cwd=item_git_path)
 
                 print('Running garbage collection')
@@ -175,6 +188,7 @@ def gitcopy(args):
                 print('Processed %s\n' % item)
 
 
+@arg('--repos', default=None)
 @arg('--github-username', required=True)
 @arg('--github-password', required=True)
 @arg('--basepath', default=path(CWD, 'repos'))
@@ -183,7 +197,12 @@ def publish(args):
 
         github_repos = [i['name'] for i in json.loads(session.get(GITHUB+'/orgs/plone/repos').content)]
 
-        for repo in os.listdir(path(args.basepath, 'git')):
+        if args.repos is None:
+            repos = os.listdir(path(args.basepath, 'svn-mirror'))
+        else:
+            repos = args.repos.split(';')
+
+        for repo in repos:
             for item in os.listdir(path(args.basepath, 'git', repo)):
 
                 item_path = path(args.basepath, 'git', repo, item)
@@ -202,6 +221,7 @@ def publish(args):
                 call('git push --tags', cwd=item_path)
 
 
+@arg('--repos', default=None)
 @arg('--projects', default=path(CWD, 'projects.cfg'))
 @arg('--remote-baseurl', default='http://svn.plone.org/svn/')
 @arg('--basepath', default=path(CWD, 'repos'))
@@ -262,7 +282,12 @@ def analyze(args):
     config.read(args.projects)
 
     i = 1
-    for repo in os.listdir(path(args.basepath, 'git')):
+    if args.repos is None:
+        repos = os.listdir(path(args.basepath, 'svn-mirror'))
+    else:
+        repos = args.repos.split(';')
+
+    for repo in repos:
         projects = dict(config.items(repo))
         header('Analyzing "' + repo + '" repository')
         for item in os.listdir(path(args.basepath, 'git', repo)):
