@@ -5,6 +5,7 @@
 authors.cfg
 bin/
 build/
+develop-eggs/
 eggs/
 include/
 lib/
@@ -12,4 +13,5 @@ local
 parts/
 share/
 src/svn2git/
+src/svn-migrate/svn_migrate.egg-info/
 var/
