@@ -98,7 +98,6 @@ def sync(args):
 @arg('--svn-repos', default=SVN_REPOS)
 @arg('--repos-path', default=path(CWD, 'repos'))
 def svnexport(args):
-
     for svn_repo in args.svn_repos.split(';'):
         svn_repo = svn_repo.strip()
         if not svn_repo:
@@ -120,78 +119,72 @@ def svnexport(args):
                 cwd=svn_repo_export)
 
 
-@arg('--repos', default=None)
-@arg('--projects', default=path(CWD, 'projects.cfg'))
-@arg('--remote-baseurl', default='http://svn.plone.org/svn/')
-@arg('--repos_path', default=path(CWD, 'repos'))
-@arg('--prefix', default='test-')
+@arg('--svn-projects', default=path(CWD, 'projects.cfg'))
+@arg('--git-repos', default=None)
+@arg('--svn-repos', default=SVN_REPOS)
+@arg('--svn-base-url', default='http://svn.plone.org/svn/')
+@arg('--repos-path', default=path(CWD, 'repos'))
 def gitcopy(args):
     config = ConfigParser.RawConfigParser()
     config.optionxform = lambda s: s
-    config.read(args.projects)
+    config.read(args.svn_projects)
 
     git_repos = []
     if args.git_repos is not None:
         git_repos = args.git_repos.split(';')
 
-    if args.repos is None:
-        repos = os.listdir(path(args.repos_path, 'svn-mirror'))
-    else:
-        repos = args.repos.split(';')
+    for svn_repo in args.svn_repos.split(';'):
+        svn_repo = svn_repo.strip()
+        if not svn_repo:
+            continue
 
-    for repo in repos:
+        svn_repo_mirror = path(args.repos_path, 'svn-mirror', svn_repo)
+        svn_repo_export = path(args.repos_path, 'svn-export', svn_repo)
+        svn_repo_projects = dict(config.items(svn_repo))
 
-        svn_mirror = path(args.repos_path, 'svn-mirror', repo)
-        svn_export = path(args.repos_path, 'svn-export', repo)
-        git = path(args.repos_path, 'git', repo)
+        git_raw_path = path(args.repos_path, 'git-raw', svn_repo)
+        if not os.path.isdir(git_raw_path):
+            call('mkdir %s -p' % git_raw_path)
 
-        if not os.path.isdir(git):
-            call('mkdir %s -p' % git)
+        for git_repo in os.listdir(svn_repo_export):
+            if not git_repo.startswith('.') and \
+               (git_repos == [] or (git_repos != [] and git_repo in git_repos)):
 
-        projects = dict(config.items(repo))
-        for item in os.listdir(svn_export):
-            if not item.startswith('.') and os.path.isdir(path(svn_export, item)):
-
-                item_path = path(svn_export, item)
-                item_git_path = path(git, item)
-                if os.path.isdir(item_git_path):
-                    print('Skipping copy of ' + item)
+                git_repo_export = path(svn_repo_export, git_repo)
+                git_repo_raw = path(git_raw_path, git_repo)
+                if os.path.isdir(git_repo_raw):
+                    line('Skipping copy of ' + git_repo)
                     continue
 
-                print('Processing: %s' % item)
-                shutil.copytree(item_path, item_git_path)
+                header('Processing: %s' % git_repo)
+                shutil.copytree(git_repo_export, git_repo_raw)
 
                 ## get a list of current active svn branches
-                remote_svn_url = projects.get(item)
-                svn_url = remote_svn_url.replace(args.remote_baseurl+repo, 'file://'+svn_mirror)
-                output = call('svn ls ' + svn_url + '/branches', stdout=PIPE)
-                svn_branches = [o.strip().rstrip('/') for o in output.split('\n') if o.strip()]
+                svn_repo_remote_url = svn_repo_projects.get(git_repo)
+                svn_repo_url = svn_repo_remote_url.replace(args.svn_base_url+ svn_repo, 'file://' + svn_repo_mirror)
+                output = call('svn ls ' + svn_repo_url + '/branches', stdout=PIPE)
+                svn_repo_branches = [o.strip().rstrip('/') for o in output.split('\n') if o.strip()]
 
                 ## remove tags with revision specific information in them
-                output = call('git tag -l', cwd=item_git_path, stdout=PIPE)
+                output = call('git tag -l', cwd=git_repo_raw, stdout=PIPE)
                 for tag in output.split('\n'):
-                    if '@' in tag:
+                    if '@' in tag and 'master' not in tag:
                         tag = tag.strip()
-                        call('git tag -d ' + tag, cwd=item_git_path)
+                        call('git tag -d ' + tag, cwd=git_repo_raw)
 
                 ## remove branches
-                output = call('git branch --no-color', cwd=item_git_path, stdout=PIPE)
-                git_branches = [o.strip() for o in output.split('\n') if o.strip()]
-                git_branches = [b.replace('* ', '') for b in git_branches]
-                extra_branches = set(git_branches) - set(svn_branches)
+                output = call('git branch --no-color', cwd=git_repo_raw, stdout=PIPE)
+                git_repo_branches = [o.strip() for o in output.split('\n') if o.strip()]
+                git_repo_branches = [b.replace('* ', '') for b in git_repo_branches]
+                extra_branches = set(git_repo_branches) - set(svn_repo_branches)
                 extra_branches = extra_branches - set(['master'])
                 for e in extra_branches:
                     match = VERSION_RE.match(e)
-                    if match is None or e.startswith('master@'):
-                        call('git branch -D %s' % e, cwd=item_git_path)
+                    if match is None:
+                        call('git branch -D %s' % e, cwd=git_repo_raw)
 
-                print('Running garbage collection')
-                call('git gc --aggressive --prune=now --quiet', cwd=item_git_path)
-
-                call('git remote add origin git@github.com:plone/%s%s.git' % (
-                        args.prefix, item), cwd=item_git_path)
-
-                print('Processed %s\n' % item)
+                call('git gc --aggressive --prune=now --quiet', cwd=git_repo_raw)
+                call('git remote add origin git@github.com:plone/%s.git' % git_repo, cwd=git_repo_raw)
 
 
 @arg('--repos', default=None)
