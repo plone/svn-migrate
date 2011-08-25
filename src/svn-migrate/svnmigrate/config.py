@@ -1,6 +1,7 @@
 
 import os
 import ConfigParser
+from svnmigrate.models import Repo
 from svnmigrate.models import SvnRepo
 from svnmigrate.utils import call
 from svnmigrate.utils import path
@@ -25,17 +26,31 @@ class Config(object):
 
     @property
     def svn_mirror(self):
-        svn_mirror = path(self._raw.get('base', 'mirror-location'))
+        svn_mirror = path(self._raw.get('base', 'svn-mirror-location'))
         if not os.path.isdir(svn_mirror):
             call('mkdir -p %s' % svn_mirror)
         return svn_mirror
+
+    @property
+    def svn_export(self):
+        svn_export = path(self._raw.get('base', 'svn-export-location'))
+        if not os.path.isdir(svn_export):
+            call('mkdir -p %s' % svn_export)
+        return svn_export
+
+    @property
+    def git_cleaned(self):
+        git_cleaned = path(self._raw.get('base', 'git-cleaned-location'))
+        if not os.path.isdir(git_cleaned):
+            call('mkdir -p %s' % git_cleaned)
+        return git_cleaned
 
     @property
     def repos(self):
         for section in self._raw.sections():
             if not section.startswith('repo:'):
                 continue
-            options = dict(name=section[5:])
+            options = dict()
             for option in self._raw.options(section):
                 options[option.replace('-', '_')] = self._raw.get(section, option)
-            yield Repo(**options)
+            yield Repo(self, section[5:], **options)

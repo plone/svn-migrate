@@ -5,6 +5,19 @@ from svnmigrate.utils import call
 from svnmigrate.utils import header 
 
 
+class Repo(object):
+
+    def __init__(self, config, name, rules, svn_repo, svn_path,
+            git_url, status, *arg, **kw):
+        self.config = config
+        self.name = name
+        self.rules = rules
+        self.svn_repo = svn_repo
+        self.svn_path = svn_path
+        self.git_url = git_url
+        self.status = status
+
+
 class SvnRepo(object):
 
     def __init__(self, config, name, remote_url):
@@ -29,3 +42,19 @@ class SvnRepo(object):
         call('svn propget svn:sync-last-merged-rev --revprop -r 0 file://%s' % svn_mirror)
         call('svnsync --non-interactive sync file://%s' % svn_mirror)
         call('svnadmin pack %s' % svn_mirror)
+
+    def export(self):
+        svn_mirror = path(self.config.svn_mirror, self.name)
+        svn_export = path(self.config.svn_export, self.name)
+
+        if args.rules_file is None:
+            rules = path(CWD, 'rules-%s.cfg' % svn_repo)
+        else:
+            rules = path(args.rules_file)
+
+        if not os.path.isdir(svn_repo_export):
+            call('mkdir %s -p' % svn_repo_export)
+
+        call('%s --identity-map %s --rules %s --add-metadata %s' % (
+                args.svn_all_fast_export, args.authors, rules, svn_repo_mirror),
+                cwd=svn_repo_export)
