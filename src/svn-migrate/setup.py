@@ -18,7 +18,7 @@ setuptools.setup(
     zip_safe=False,
     install_requires=[
         'argh',
-        'requests',
+        'github2',
         ],
     entry_points="""
         [console_scripts]

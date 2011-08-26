@@ -1,4 +1,5 @@
 
+import re
 import os
 import ConfigParser
 from svnmigrate.models import Repo
@@ -46,11 +47,20 @@ class Config(object):
         return git_cleaned
 
     @property
-    def repos(self):
+    def svn_all_fast_export(self):
+        return path(self._raw.get('base', 'svn-all-fast-export-tool'))
+
+    @property
+    def version_regex(self):
+        return re.compile(self._raw.get('base', 'version_regex'))
+
+    def get_repos(self, svn_repo=None):
         for section in self._raw.sections():
             if not section.startswith('repo:'):
                 continue
             options = dict()
             for option in self._raw.options(section):
                 options[option.replace('-', '_')] = self._raw.get(section, option)
+            if svn_repo is not None and svn_repo != options['svn_repo']:
+                continue
             yield Repo(self, section[5:], **options)
