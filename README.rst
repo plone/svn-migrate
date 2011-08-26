@@ -41,7 +41,9 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
 
 1. Prepare local SVN mirrors and sync the data, which will take some days to
     finish. But if you run afterwards it will only update missing commits. So
-    only initial run is exspensive.::
+    only initial run is exspensive.
+    
+    ::
 
         $ bin/svn-migrate sync -p etc/projects.cfg
 
@@ -63,7 +65,9 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
 
         $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
 
-2. Export from svn mirrors we created in previous step to git.::
+2. Export from svn mirrors we created in previous step to git.
+   
+    ::
     
         $ bin/svn-migrate export -p etc/projects.cfg -a authors.cfg
 
@@ -79,7 +83,9 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
           -R SVN_REPOS, --svn-repos SVN_REPOS
           -r REPOS, --repos REPOS
 
-3. Cleanup previusly exported repositories (remove not not needed branches, tags, etc..)::
+3. Cleanup previusly exported repositories (remove not not needed branches, tags, etc..).
+   
+    ::
 
         $ bin/svn-migrate cleanup -p etc/projects.cfg
 
@@ -93,7 +99,9 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
           -r REPOS, --repos REPOS
 
 
-4. Publish repos to new location (github.com/plone).::
+4. Publish repos to new location (github.com/plone).
+   
+    ::
 
         $ bin/svn-migrate publish
    
