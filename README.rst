@@ -40,8 +40,8 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
 
 
 1. Prepare local SVN mirrors and sync the data, which will take some days to
-    finish. But if you run afterwards it will only update missing commits. So
-    only initial run is exspensive.
+   finish. But if you run afterwards it will only update missing commits. So
+   only initial run is exspensive.
     
     ::
 
