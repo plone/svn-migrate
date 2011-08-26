@@ -47,7 +47,7 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
 
     ::
 
-       usage: svn-migrate sync [-h] -p PROJECTS_FILE [-R SVN_REPOS]
+        usage: svn-migrate sync [-h] -p PROJECTS_FILE [-R SVN_REPOS]
 
         optional arguments:
           -h, --help            show this help message and exit
