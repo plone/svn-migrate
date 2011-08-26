@@ -22,44 +22,92 @@ First install the OS package dependencies. Then bootstrap the buildout::
 Migrate
 =======
 
-We use a three-step process for the migration. First get local SVN mirrors of
-all plone.org repositories (via svnsync or bootstrap with a svndump). Then for
-a subset of projects create local git exports. Finally create copies of the
-Git exports, run cleanup actions on them and finally publish those to Github.
+Above setup should get you ready everything for ``bin/svn-migrate``.::
 
-The first step is extremely time consuming. If you don't have a svndump it will
-take several days depending on your network connection and the load on the
-plone.org servers. But this step uses a sync approach, so you can update the
-data by new commits. The second and third step are destructive and require a
-`downtime/freeze` for the affected project.
+    usage: svn-migrate [-h] {sync,export,cleanup,publish,status} ...
+    
+    positional arguments:
+      {sync,export,cleanup,publish,status}
+        sync                Create svn mirror, if they don't exists, and sync svn
+                            repositories.
+        export              Export from svn-mirror to git repository
+        cleanup             Cleanup exported repositories.
+        publish             Publish repos to github
+        status              Show status
+    
+    optional arguments:
+      -h, --help            show this help message and exit
 
-Detailed steps
---------------
 
 1. Prepare local SVN mirrors and sync the data, which will take some days to
-finish. But if you run afterwards it will only update missing commits. So
-only initial run is exspensive.::
+    finish. But if you run afterwards it will only update missing commits. So
+    only initial run is exspensive.::
 
-  $ ./migrate sync
+        $ bin/svn-migrate sync -p etc/projects.cfg
 
-If you need to Ctrl-C the sync process, you might be greeted with an error
-message next time.::
+    ::
 
-  Failed to get lock on destination repos, currently held by...
+       usage: svn-migrate sync [-h] -p PROJECTS_FILE [-R SVN_REPOS]
 
-You can get rid of the lock by calling.::
+        optional arguments:
+          -h, --help            show this help message and exit
+          -p PROJECTS_FILE, --projects-file PROJECTS_FILE
+          -R SVN_REPOS, --svn-repos SVN_REPOS
 
-  $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
+    If you need to Ctrl-C the sync process, you might be greeted with an error
+    message next time.::
+    
+        Failed to get lock on destination repos, currently held by...
 
-2. Get authors from svn projects (via plone's ldap). Migrate to new git
-repositories or if this is not the first time, also update/rebase git
-repositories with changes from svn.::
+    You can get rid of the lock by calling.::
 
-  $ ./migrate convert
+        $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
 
-3. Publish repos to new location (github.com/plone).::
+2. Export from svn mirrors we created in previous step to git.::
+    
+        $ bin/svn-migrate export -p etc/projects.cfg -a authors.cfg
 
-  $ ./migrate publish
+    ::
+
+        usage: svn-migrate export [-h] -p PROJECTS_FILE -a AUTHORS_FILE [-R SVN_REPOS]
+                                  [-r REPOS]
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -p PROJECTS_FILE, --projects-file PROJECTS_FILE
+          -a AUTHORS_FILE, --authors-file AUTHORS_FILE
+          -R SVN_REPOS, --svn-repos SVN_REPOS
+          -r REPOS, --repos REPOS
+
+3. Cleanup previusly exported repositories (remove not not needed branches, tags, etc..)::
+
+        $ bin/svn-migrate cleanup -p etc/projects.cfg
+
+    ::
+
+        usage: svn-migrate cleanup [-h] -p PROJECTS_FILE [-r REPOS]
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -p PROJECTS_FILE, --projects-file PROJECTS_FILE
+          -r REPOS, --repos REPOS
+
+
+4. Publish repos to new location (github.com/plone).::
+
+        $ bin/svn-migrate publish
+   
+    ::
+
+        usage: svn-migrate publish [-h] -p PROJECTS_FILE -u USERNAME -t API_TOKEN
+                                   [-r REPOS]
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -p PROJECTS_FILE, --projects-file PROJECTS_FILE
+          -u USERNAME, --username USERNAME
+          -t API_TOKEN, --api-token API_TOKEN
+          -r REPOS, --repos REPOS
 
 Todo
 ----
