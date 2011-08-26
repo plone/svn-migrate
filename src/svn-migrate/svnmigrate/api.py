@@ -7,6 +7,7 @@ from svnmigrate.config import Config
 from svnmigrate.utils import header
 from svnmigrate.utils import line
 from svnmigrate.utils import path
+from svnmigrate.utils import call
 
 
 class API(object):
@@ -14,7 +15,7 @@ class API(object):
     """
 
     def __iter__(self):
-        for i in ['sync', 'export', 'cleanup', 'publish', 'status']:
+        for i in ['sync', 'export', 'cleanup', 'publish', 'analyze', 'status']:
             yield getattr(self, i)
 
     #
@@ -90,6 +91,19 @@ class API(object):
                repo.name in args.repos.split(';'):
                 repo.publish(gh, gh_repos)
 
+    @arg('-p', '--projects-file', required=True)
+    @arg('-r', '--repos', default=None)
+    def analyze(self, args):
+        """Analyze repos if they were migrated successfuly."""
+
+        config = Config(args.projects_file)
+
+        for repo in config.get_repos():
+            if args.repos is None or \
+               repo.name in args.repos.split(';'):
+                repo.analyze()
+
+        call('rm -rf %s' % config.analyze_path)
 
     @arg('-p', '--projects-file', required=True)
     @arg('-r', '--repos', default=None)

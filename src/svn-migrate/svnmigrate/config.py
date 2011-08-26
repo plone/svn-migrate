@@ -47,6 +47,14 @@ class Config(object):
         return git_cleaned
 
     @property
+    def analyze_path(self):
+        analyze_path = path(self._raw.get('base', 'analyze-location'))
+        if not os.path.isdir(analyze_path):
+            call('mkdir -p %s' % analyze_path)
+        return analyze_path
+
+
+    @property
     def svn_all_fast_export(self):
         return path(self._raw.get('base', 'svn-all-fast-export-tool'))
 

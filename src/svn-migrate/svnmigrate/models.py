@@ -8,6 +8,7 @@ from svnmigrate.utils import path
 from svnmigrate.utils import call
 from svnmigrate.utils import header 
 from svnmigrate.utils import line
+from svnmigrate.utils import sha_checklist
 
 
 class Repo(object):
@@ -48,7 +49,7 @@ class Repo(object):
 
         ## remove tags with revision specific information in them
         for tag in call('git tag -l', cwd=git_cleaned, stdout=PIPE).split('\n'):
-            if '@' in tag and 'master' not in tag:
+            if '@' in tag :
                 call('git tag -d ' + tag.strip(), cwd=git_cleaned)
 
         ## get a list of svn/git branches
@@ -71,7 +72,6 @@ class Repo(object):
                 self.name, cwd=git_cleaned)
 
     def publish(self, gh, gh_repos):
-
         git_cleaned = path(self.config.git_cleaned, self.svn_repo, self.name)
         if not os.path.isdir(git_cleaned):
             return
@@ -92,6 +92,89 @@ class Repo(object):
 
         call('git push --all', cwd=git_cleaned)
         call('git push --tags', cwd=git_cleaned)
+
+    def analyze(self):
+
+        def compare_items(msg, svn_items, git_items):
+            line(msg)
+            diff = list(set(svn_items).symmetric_difference(set(git_items)))
+            if diff:
+                line("svn: "+str(svn_items), 1)
+                line("git: "+str(git_items), 1)
+                line("diff: "+str(diff), 1)
+            else:
+                line("everything ok", 1)
+            line("")
+
+        def compare_content(msg, svn, git):
+            line('%s "%s"(svn) vs. "%s"(git)' % (msg, svn[1], git[1]), 1)
+    
+            svn_path = path(self.config.analyze_path, self.name, 'svn', svn[1])
+            git_path = path(self.config.analyze_path, self.name, 'git', git[1])
+    
+            if not os.path.isdir(svn_path):
+                call('mkdir -p %s' % path(svn_path, '..'))
+                call('svn export -q file://%s %s' % (svn[0], svn_path))
+            if not os.path.isdir(git_path):
+                call('mkdir -p %s' % path(git_path, '..'))
+                call('git clone -q %s %s' % (git[0], git[1]),
+                        cwd=path(git_path, '..'))
+                call('git checkout -q %s' % git[1], cwd=git_path)
+    
+            diff = call('diff -q -r -I "\$Id.*\$" -I "\$Date.*\$" --exclude ".git" %s %s' % (svn_path, git_path), stdout=PIPE, stderr=PIPE)
+            if diff:
+                for i in diff.split('\n'):
+                    line(i, 2)
+            else:
+                line("everything ok", 2)
+
+
+        ## paths
+        svn_mirror = path(self.config.svn_mirror, self.svn_repo) + self.svn_path
+        git_cleaned = path(self.config.git_cleaned, self.svn_repo, self.name)
+
+        if not os.path.isdir(git_cleaned):
+            return
+
+        header('Analyzing "' + self.name + '" repository')
+
+        ## svn tags and branches
+        svn_branches = [ item.strip().rstrip('/') for item in \
+                call('svn ls file://%s/branches' % svn_mirror,
+                    stdout=PIPE).split('\n') if item.strip() ]
+        svn_tags = [ item.strip().rstrip('/') for item in \
+                call('svn ls file://%s/tags' % svn_mirror,
+                    stdout=PIPE).split('\n') if item.strip()]
+
+        ## git tags and breanches
+        git_branches = [ item.strip().replace('* ', '') for item in \
+                call('git branch --no-color', cwd=git_cleaned,
+                    stdout=PIPE).split('\n') if item.strip()]
+        git_branches_without_master = list(git_branches)
+        git_branches_without_master.remove('master')
+        git_tags = [ item.strip() for item in \
+                call('git tag -l', cwd=git_cleaned,
+                    stdout=PIPE).split('\n') if item.strip()]
+
+        ## compare tags and branches
+        compare_items('Are all tags preserved?', svn_tags, git_tags)
+        compare_items('Are all branches preserved?', svn_branches,
+                git_branches_without_master)
+
+        ## compare content
+        line("Does content of the GIT master matches SVN trunk?")
+        compare_content('Comparing BRANCHES',
+                (svn_mirror + '/trunk', 'trunk'),
+                (git_cleaned, 'master'))
+        for branch in set(svn_branches).intersection(set(git_branches)):
+            compare_content('Comparing BRANCHES: ',
+                    (svn_mirror+'/branches/'+branch, branch),
+                    (git_cleaned, branch))
+        for tag in set(svn_tags).intersection(set(git_tags)):
+            compare_content('Comparing TAGS: ',
+                    (svn_mirror+'/tags/'+tag, tag),
+                    (git_cleaned, tag))
+
 
 
 class SvnRepo(object):

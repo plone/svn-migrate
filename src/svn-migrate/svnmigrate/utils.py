@@ -8,7 +8,10 @@ def path(*arg):
     return os.path.abspath(os.path.join(*arg))
 
 def call(cmd, *arg, **kw):
-    print "COMMAND: " + cmd
+    cwd = ''
+    if 'cwd' in kw:
+        cwd = ' ( at %s )' % kw['cwd']
+    #print "COMMAND: " + cmd + cwd
     return subprocess.Popen(shlex.split(cmd), *arg, **kw).communicate()[0]
 
 def header(txt):
