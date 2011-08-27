@@ -1,8 +1,9 @@
-Overview
-========
 
 This repository contains scripts and docs to migrate Plone Core from Subversion
 to Github.
+
+.. contents::
+
 
 Setup
 =====
@@ -18,6 +19,7 @@ First install the OS package dependencies. Then bootstrap the buildout::
 
   $ python2.7 bootstrap.py -d
   $ bin/buildout
+
 
 Migrate
 =======
@@ -103,7 +105,7 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
    
     ::
 
-        $ bin/svn-migrate publish
+        $ bin/svn-migrate publish -p etc/projects.cfg
    
     ::
 
@@ -117,8 +119,105 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
           -t API_TOKEN, --api-token API_TOKEN
           -r REPOS, --repos REPOS
 
-Todo
-----
+
+5. There is also a status command that will show you in which state this
+   package is.
+
+    ::
+
+        $ bin/svn-migrate status -p status
+
+    ::
+
+        usage: svn-migrate status [-h] [-p PROJECTS_FILE] [-r REPOS]
+        
+        optional arguments:
+            -h, --help            show this help message and exit
+            -p PROJECTS_FILE, --projects-file PROJECTS_FILE
+            -r REPOS, --repos REPOS
+
+
+Example
+=======
+
+I will give example of how to work on single repository and write rules for it,
+test it.
+
+0. pull out this repository prior to any work.
+
+1. make sure you synced svn repository.
+
+    ::
+
+        $ svn-migrate sync
+
+2. open ``etc/projects.cfg`` find a repository you want to work on (check their
+   statuses) and the one you selected write 'IN-PROGRESS (Your Name)'. now
+   commit and push this so others see you are working on it.
+
+3. write rules for you project in a file that is referring from
+   ``etc/projects.cfg`` ... example: for ``Products.Marshall`` you write rules into
+   ``etc/rules/rules-Products.Marshall.cfg``
+
+4. ones rules are written export them and cleanup git repository
+
+    ::
+
+        $ svn-migrate export -r Products.Marshall
+        $ svn-migrate cleanup -r Products.Marshall
+
+    Using ``-r`` option you will only run rules and cleanup for selected
+    repository. if you want to run for more repositories then separate them
+    with ``;``. if ``-r`` flag is skipped it will run for all repos defined in
+    ``etc/projects.cfg`` file.
+
+5. analyze how the migration is been successful.
+
+    ::
+
+        $ svn-migrate analyze -r Products.Marshall
+
+    This script will check:
+        - if tags and branches are the same and in if not it will display the
+          difference
+        - run ``diff`` command on all existing branches/tags in svn and compare
+          them with their git equivalents.
+
+
+    If error accur go back to step number 3 and try to fix rules.
+
+    If you have no errors proceed.
+
+6. after project is been done mark it as completed so me and other know that no
+   work is needed on this.
+
+    meaning: open ``etc/projects.cfg``, find your repository you were migrating
+    and change status to WORKS-FOR-ME (giving reasons why you thnk its ok) or
+    COMPLETED (meaning as no error apear during analyzing)
+
+7. publish to github. (only if you have rights to create repositories on
+   github.com/plone)
+
+    ::
+
+        WARNING! ACHTUNG!!
+
+        it will ask you weather you want to delete repository prior to push it
+        github. but i'm warning you here again that with publishing repository
+        to github it will delete it before publishing it. There i said it
+        again.
+
+    ::
+
+        $ svn-migrate publish -r Products.Marshall
+
+
+
+TODO (for garbas): we need to also test this with ``plone-coredev``
+
+
+Where to search for help
+========================
 
 Write more svn2git rules, examples and docs at:
 
