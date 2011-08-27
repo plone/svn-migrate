@@ -22,7 +22,7 @@ class API(object):
     # COMMANDS
     #
 
-    @arg('-p', '--projects-file', required=True)
+    @arg('-p', '--projects-file', default='etc/projects.cfg')
     @arg('-R', '--svn-repos', default=None)
     def sync(self, args):
         """Create svn mirror, if they don't exists, and sync svn repositories."""
@@ -41,8 +41,8 @@ class API(object):
             if svn_repo.name in svn_repos_to_process:
                 svn_repo.sync()
 
-    @arg('-p', '--projects-file', required=True)
-    @arg('-a', '--authors-file', required=True)
+    @arg('-p', '--projects-file', default='etc/projects.cfg')
+    @arg('-a', '--authors-file', default='authors.cfg')
     @arg('-R', '--svn-repos', default=None)
     @arg('-r', '--repos', default=None)
     def export(self, args):
@@ -59,7 +59,7 @@ class API(object):
                 svn_repo.export(path(args.authors_file), args.repos)
 
 
-    @arg('-p', '--projects-file', required=True)
+    @arg('-p', '--projects-file', default='etc/projects.cfg')
     @arg('-r', '--repos', default=None)
     def cleanup(self, args):
         """Cleanup exported repositories."""
@@ -70,7 +70,7 @@ class API(object):
                repo.name in args.repos.split(';'):
                 repo.cleanup()
 
-    @arg('-p', '--projects-file', required=True)
+    @arg('-p', '--projects-file', default='etc/projects.cfg')
     @arg('-u', '--username', required=True)
     @arg('-t', '--api-token', required=True)
     @arg('-r', '--repos', default=None)
@@ -91,7 +91,7 @@ class API(object):
                repo.name in args.repos.split(';'):
                 repo.publish(gh, gh_repos)
 
-    @arg('-p', '--projects-file', required=True)
+    @arg('-p', '--projects-file', default='etc/projects.cfg')
     @arg('-r', '--repos', default=None)
     def analyze(self, args):
         """Analyze repos if they were migrated successfuly."""
@@ -105,7 +105,7 @@ class API(object):
 
         call('rm -rf %s' % config.analyze_path)
 
-    @arg('-p', '--projects-file', required=True)
+    @arg('-p', '--projects-file', default='etc/projects.cfg')
     @arg('-r', '--repos', default=None)
     def status(self, args):
         """Show status"""
@@ -113,12 +113,16 @@ class API(object):
         if args.repos is not None:
             repos_to_process = args.repos.split(';')
         else:
-            repos_to_process = [i.name for i in config.repos]
+            repos_to_process = [i.name for i in config.get_repos()]
 
         header('Status report')
-        for repo in config.repos:
+        for repo in config.get_repos():
             if repo.name in repos_to_process:
-                line('%s: %s' % (repo.name, repo.status))
+                status = repo.status.split('\n')
+                line('%s: %s' % (repo.name, status[0]))
+                for item in status[1:]:
+                    line(item, 1)
+                line('')
 
 
 
