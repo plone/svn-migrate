@@ -151,7 +151,8 @@ class Repo(object):
                 call('git branch --no-color', cwd=git_cleaned,
                     stdout=PIPE).split('\n') if item.strip()]
         git_branches_without_master = list(git_branches)
-        git_branches_without_master.remove('master')
+        if 'master' in git_branches_without_master:
+            git_branches_without_master.remove('master')
         git_tags = [ item.strip() for item in \
                 call('git tag -l', cwd=git_cleaned,
                     stdout=PIPE).split('\n') if item.strip()]
