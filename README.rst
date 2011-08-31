@@ -1,4 +1,3 @@
-
 This repository contains scripts and docs to migrate Plone Core from Subversion
 to Github.
 
@@ -13,7 +12,7 @@ compiled. Don't try this on a non-Linux OS, it won't work.
 
 We'll need SVN mirrors of all three plone.org repositories. This will take
 about 13gb of space. The uncleaned Git exports take about 0.5gb and the final
-result only ways in at about 100mb.
+result is about 100mb.
 
 First install the OS package dependencies. Then bootstrap the buildout::
 
@@ -24,16 +23,16 @@ First install the OS package dependencies. Then bootstrap the buildout::
 Migrate
 =======
 
-Above setup should get you ready everything for ``bin/svn-migrate``.::
+Above setup should get everything ready for ``bin/svn-migrate``.::
 
     usage: svn-migrate [-h] {sync,export,cleanup,publish,status} ...
     
     positional arguments:
       {sync,export,cleanup,publish,status}
-        sync                Create svn mirror, if they don't exists, and sync svn
+        sync                Create svn mirror if they don't exist, and sync svn
                             repositories.
         export              Export from svn-mirror to git repository
-        cleanup             Cleanup exported repositories.
+        cleanup             Cleanup exported repositories
         publish             Publish repos to github
         status              Show status
     
@@ -41,9 +40,9 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
       -h, --help            show this help message and exit
 
 
-1. Prepare local SVN mirrors and sync the data, which will take some days to
-   finish. But if you run afterwards it will only update missing commits. So
-   only initial run is exspensive.
+1. Prepare local SVN mirrors and sync the data. This will take some days to
+   finish. But if you run it again at a later stage, it will only update missing 
+   commits. So only the initial run is expensive.
     
     ::
 
@@ -67,7 +66,7 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
 
         $ svn propdel svn:sync-lock --revprop -r 0 file://$PWD/repos/svn-mirror/<repo name>/
 
-2. Export from svn mirrors we created in previous step to git.
+2. Export from svn mirrors we created in the previous step to git.
    
     ::
     
@@ -85,7 +84,7 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
           -R SVN_REPOS, --svn-repos SVN_REPOS
           -r REPOS, --repos REPOS
 
-3. Cleanup previusly exported repositories (remove not not needed branches, tags, etc..).
+3. Cleanup previusly exported repositories (remove needed branches not needed, tags, etc..).
    
     ::
 
@@ -140,72 +139,71 @@ Above setup should get you ready everything for ``bin/svn-migrate``.::
 Example
 =======
 
-I will give example of how to work on single repository and write rules for it,
-test it.
+I will give example of how to work on a single repository, write rules for it
+and test it.
 
-0. pull out this repository prior to any work.
+1. Pull out the repository prior to any work.
 
-1. make sure you synced svn repository.
+2. Make sure you synced it with the svn repository.
 
     ::
 
         $ svn-migrate sync
 
-2. open ``etc/projects.cfg`` find a repository you want to work on (check their
-   statuses) and the one you selected write 'IN-PROGRESS (Your Name)'. now
+3. Open ``etc/projects.cfg`` and find a repository you want to work on (check their
+   statuses). Then you write 'IN-PROGRESS (Your Name)' into the selected repo. now
    commit and push this so others see you are working on it.
 
-3. write rules for you project in a file that is referring from
-   ``etc/projects.cfg`` ... example: for ``Products.Marshall`` you write rules into
+4. Write rules for you project in a file that is referring from
+   ``etc/projects.cfg`` ... example: for ``Products.Marshall``. You write rules into
    ``etc/rules/rules-Products.Marshall.cfg``
 
-4. ones rules are written export them and cleanup git repository
+5. Once your rules are written export them and cleanup git repository
 
     ::
 
         $ svn-migrate export -r Products.Marshall
         $ svn-migrate cleanup -r Products.Marshall
 
-    Using ``-r`` option you will only run rules and cleanup for selected
-    repository. if you want to run for more repositories then separate them
-    with ``;``. if ``-r`` flag is skipped it will run for all repos defined in
+    When using the ``-r`` option, you will only run rules and cleanup for the
+    selected repository. if you want to run it more repositories then separate them
+    with ``;``. if the ``-r`` flag is skipped it will run for all repos defined in
     ``etc/projects.cfg`` file.
 
-5. analyze how the migration is been successful.
+6. Analyze if the migration has been successful.
 
     ::
 
         $ svn-migrate analyze -r Products.Marshall
 
-    This script will check:
-        - if tags and branches are the same and in if not it will display the
+    This script will:
+        - check if tags and branches are the same and if not it will display the
           difference
         - run ``diff`` command on all existing branches/tags in svn and compare
           them with their git equivalents.
 
 
-    If error accur go back to step number 3 and try to fix rules.
+    If error occur go back to step number 3 and try to fix the rules.
 
-    If you have no errors proceed.
+    If you have no errors, proceed.
 
-6. after project is been done mark it as completed so me and other know that no
+7. After the project is ready, mark it as completed so I and others know that no
    work is needed on this.
 
-    meaning: open ``etc/projects.cfg``, find your repository you were migrating
-    and change status to WORKS-FOR-ME (giving reasons why you thnk its ok) or
-    COMPLETED (meaning as no error apear during analyzing)
+    This meaning: open ``etc/projects.cfg``, find your repository you were migrating
+    and change status to WORKS-FOR-ME (giving reasons why you think its ok) or
+    COMPLETED (meaning that no error apeared during the analyze step)
 
-7. publish to github. (only if you have rights to create repositories on
+8. Publish to github. (only if you have rights to create repositories on
    github.com/plone)
 
     ::
 
         WARNING! ACHTUNG!!
 
-        it will ask you weather you want to delete repository prior to push it
-        github. but i'm warning you here again that with publishing repository
-        to github it will delete it before publishing it. There i said it
-        again.
+        it will ask you whether you want to delete the repository prior to pushing it
+        to github. But I'm warning you here again that with publishing the repository
+        to github it will delete it before publishing it. There, I said it again.
 
     ::
 
@@ -229,13 +227,13 @@ Especially this remark::
 
   Also try grepping the output from svn2git for the string '"copy from"'
   (with the double quotation marks). This will give you a list of
-  revisions/paths that svn2git could not detect the origin of. That is
-  someone did a svn cp/mv and the old path is not in the generated git
+  revisions/paths that svn2git could not detect the origin of. That happens
+  if someone did a svn cp/mv and the old path is not in the generated git
   repository.
 
 Validate the Git data:
 
-- run setup.py sdist on tags and compare to pypi uploads?
+- run setup.py sdist on tags and compare to pypi uploads
 - check number of tags / branches
 - `diff -ur` trunk / master and tags?
 
