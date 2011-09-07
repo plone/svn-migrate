@@ -18,6 +18,7 @@ setuptools.setup(
     zip_safe=False,
     install_requires=[
         'argh',
+        'argparse',
         'github2',
         ],
     entry_points="""

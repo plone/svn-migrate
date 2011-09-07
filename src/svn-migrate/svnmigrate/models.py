@@ -11,16 +11,25 @@ from svnmigrate.utils import line
 from svnmigrate.utils import sha_checklist
 
 
+GH_REPOS = dict()
+def get_gh_repos(gh, gh_org):
+    if gh_org not in GH_REPOS.keys():
+        GH_REPOS[gh_org] = []
+        for repo in gh.organizations.repositories(gh_org):
+            GH_REPOS[gh_org].append(repo.name)
+    return GH_REPOS[gh_org]
+
+
 class Repo(object):
 
     def __init__(self, config, name, rules, svn_repo, svn_path,
-            git_url, status, *arg, **kw):
+            git_org, status, *arg, **kw):
         self.config = config
         self.name = name
         self.rules = rules
         self.svn_repo = svn_repo
         self.svn_path = svn_path
-        self.git_url = git_url
+        self.git_org = git_org
         self.status = status
 
     def cleanup(self):
@@ -68,16 +77,16 @@ class Repo(object):
                 call('git branch -D %s' % git_branch, cwd=git_cleaned)
 
         call('git gc --aggressive --prune=now --quiet', cwd=git_cleaned)
-        call('git remote add origin git@github.com:plone/%s.git' % \
-                self.name, cwd=git_cleaned)
+        call('git remote add origin git@github.com:%s/%s.git' % (self.git_org, self.name), cwd=git_cleaned)
 
-    def publish(self, gh, gh_repos):
+    def publish(self, gh):
         git_cleaned = path(self.config.git_cleaned, self.svn_repo, self.name)
         if not os.path.isdir(git_cleaned):
             return
         
-        gh_repo_name = 'plone/' + self.name
-        if self.name in gh_repos.keys():
+        gh_repos = get_gh_repos(gh, self.git_org)
+        gh_repo_name = '%s/%s' % (self.git_org, self.name)
+        if self.name in gh_repos:
             if confirm('Do you want to delete "%s" repository from '
                        'github?' % gh_repo_name):
                 gh.repos.delete(gh_repo_name)

@@ -22,7 +22,7 @@ class API(object):
     # COMMANDS
     #
 
-    @arg('-p', '--projects-file', default='etc/projects.cfg')
+    @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
     @arg('-R', '--svn-repos', default=None)
     def sync(self, args):
         """Create svn mirror, if they don't exists, and sync svn repositories."""
@@ -41,7 +41,7 @@ class API(object):
             if svn_repo.name in svn_repos_to_process:
                 svn_repo.sync()
 
-    @arg('-p', '--projects-file', default='etc/projects.cfg')
+    @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
     @arg('-a', '--authors-file', default='authors.cfg')
     @arg('-R', '--svn-repos', default=None)
     @arg('-r', '--repos', default=None)
@@ -59,7 +59,7 @@ class API(object):
                 svn_repo.export(path(args.authors_file), args.repos)
 
 
-    @arg('-p', '--projects-file', default='etc/projects.cfg')
+    @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
     @arg('-r', '--repos', default=None)
     def cleanup(self, args):
         """Cleanup exported repositories."""
@@ -70,7 +70,7 @@ class API(object):
                repo.name in args.repos.split(';'):
                 repo.cleanup()
 
-    @arg('-p', '--projects-file', default='etc/projects.cfg')
+    @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
     @arg('-u', '--username', required=True)
     @arg('-t', '--api-token', required=True)
     @arg('-r', '--repos', default=None)
@@ -81,17 +81,14 @@ class API(object):
         #logging.basicConfig(level=logging.DEBUG)
 
         gh = Github(username=args.username, api_token=args.api_token)
-        gh_repos = dict()
-        for repo in gh.organizations.repositories('plone'):
-            gh_repos[repo.name] = repo
 
         config = Config(args.projects_file)
         for repo in config.get_repos():
             if args.repos is None or \
                repo.name in args.repos.split(';'):
-                repo.publish(gh, gh_repos)
+                repo.publish(gh)
 
-    @arg('-p', '--projects-file', default='etc/projects.cfg')
+    @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
     @arg('-r', '--repos', default=None)
     def analyze(self, args):
         """Analyze repos if they were migrated successfuly."""
@@ -105,7 +102,7 @@ class API(object):
 
         call('rm -rf %s' % config.analyze_path)
 
-    @arg('-p', '--projects-file', default='etc/projects.cfg')
+    @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
     @arg('-r', '--repos', default=None)
     def status(self, args):
         """Show status"""
