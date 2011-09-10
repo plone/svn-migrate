@@ -29,7 +29,7 @@ class API(object):
         
         config = Config(args.projects_file)
         if args.svn_repos is not None:
-            svn_repos_to_process = args.svn_repos.split(';')
+            svn_repos_to_process = args.svn_repos.split(',')
         else:
             svn_repos_to_process = [i.name for i in config.svn_repos]
 
@@ -50,7 +50,7 @@ class API(object):
 
         config = Config(args.projects_file)
         if args.svn_repos is not None:
-            svn_repos_to_process = args.svn_repos.split(';')
+            svn_repos_to_process = args.svn_repos.split(',')
         else:
             svn_repos_to_process = [i.name for i in config.svn_repos]
 
@@ -67,7 +67,7 @@ class API(object):
         config = Config(args.projects_file)
         for repo in config.get_repos():
             if args.repos is None or \
-               repo.name in args.repos.split(';'):
+               repo.name in args.repos.split(','):
                 repo.cleanup()
 
     @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
@@ -85,7 +85,7 @@ class API(object):
         config = Config(args.projects_file)
         for repo in config.get_repos():
             if args.repos is None or \
-               repo.name in args.repos.split(';'):
+               repo.name in args.repos.split(','):
                 repo.publish(gh)
 
     @arg('-p', '--projects-file', default='etc/plone-projects.cfg')
@@ -97,7 +97,7 @@ class API(object):
 
         for repo in config.get_repos():
             if args.repos is None or \
-               repo.name in args.repos.split(';'):
+               repo.name in args.repos.split(','):
                 repo.analyze()
 
         call('rm -rf %s' % config.analyze_path)
@@ -108,7 +108,7 @@ class API(object):
         """Show status"""
         config = Config(args.projects_file)
         if args.repos is not None:
-            repos_to_process = args.repos.split(';')
+            repos_to_process = args.repos.split(',')
         else:
             repos_to_process = [i.name for i in config.get_repos()]
 
