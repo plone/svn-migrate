@@ -87,7 +87,7 @@ class Repo(object):
         gh_repos = get_gh_repos(gh, self.git_org)
         gh_repo_name = '%s/%s' % (self.git_org, self.name)
         if self.name in gh_repos:
-            if confirm('Do you want to delete "%s" repository from '
+            if True or confirm('Do you want to delete "%s" repository from '
                        'github?' % gh_repo_name):
                 gh.repos.delete(gh_repo_name)
                 header('"%s" deleted!' % gh_repo_name)
