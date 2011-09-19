@@ -1,0 +1,792 @@
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.formwidget.querystring/tags' non-existent in that revision
+Branch tisto set up to track remote branch tisto from origin.
+Branch dukebody-transienttiledata set up to track remote branch dukebody-transienttiledata from origin.
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.resource/branches' non-existent in that revision
+Branch dukebody-imagetile-repo set up to track remote branch dukebody-imagetile-repo from origin.
+Branch addeditforms set up to track remote branch addeditforms from origin.
+Branch dukebody-transienttiledata set up to track remote branch dukebody-transienttiledata from origin.
+Branch 1.4 set up to track remote branch 1.4 from origin.
+Branch 1.5 set up to track remote branch 1.5 from origin.
+Branch 1.6 set up to track remote branch 1.6 from origin.
+
+---------------------------------------------------
+Analyzing "plone.formwidget.querystring" repository
+---------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "tisto"(svn) vs. "tisto"(git)
+        everything ok
+
+--------------------------------------
+Analyzing "plone.app.tiles" repository
+--------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-transienttiledata"(svn) vs. "dukebody-transienttiledata"(git)
+        everything ok
+    Comparing TAGS:  "dukebody-gsocfinal"(svn) vs. "dukebody-gsocfinal"(git)
+        everything ok
+
+----------------------------------------
+Analyzing "decobrewery.theme" repository
+----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+
+-------------------------------------
+Analyzing "plone.resource" repository
+-------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+
+----------------------------------------
+Analyzing "plone.app.tinymce" repository
+----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+
+----------------------------------
+Analyzing "plone.tiles" repository
+----------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-imagetile-repo"(svn) vs. "dukebody-imagetile-repo"(git)
+        everything ok
+    Comparing BRANCHES:  "addeditforms"(svn) vs. "addeditforms"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-transienttiledata"(svn) vs. "dukebody-transienttiledata"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "dukebody-gsocfinal"(svn) vs. "dukebody-gsocfinal"(git)
+        everything ok
+
+--------------------------------------------------
+Analyzing "Products.ResourceRegistries" repository
+--------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "1.4"(svn) vs. "1.4"(git)
+        everything ok
+    Comparing BRANCHES:  "1.5"(svn) vs. "1.5"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.5/Products/ResourceRegistries/tests/test_resources: css
+        
+    Comparing BRANCHES:  "1.6"(svn) vs. "1.6"(git)
+        everything ok
+    Comparing BRANCHES:  "1.0"(svn) vs. "1.0"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/Extensions/Branch 1.1 set up to track remote branch 1.1 from origin.
+Install.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/Extensions/Install.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/Extensions/migrate.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/Extensions/migrate.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/config.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/config.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/doc/HISTORY.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/doc/HISTORY.txt differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/skins/ResourceRegistries: jstest.js
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/skins/ResourceRegistries: simple.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/skins/ResourceRegistries: simple2.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/skins/ResourceRegistries: test_rr_1.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/skins/ResourceRegistries: test_rr_1.js
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/skins/ResourceRegistries: test_rr_2.css
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tests/testCSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/tests/testCSSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tests: testHTTPHeaders.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/tests/testJSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/version.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/version.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/csscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/csscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/cssconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/cssconfig.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/jscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/jscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/jsconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/jsconfig.zpt differ
+        
+    Comparing BRANCHES:  "1.1"(svn) vs. "1.1"(git)
+        everything ok
+    Comparing BRANCHES:  "1.2"(svn) vs. "1.2"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/Extensions/Install.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/Extensions/Install.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/config.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/config.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/doc/HISTORY.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/doc/HISTORY.txt differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: five_tests_base.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: interfaces.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests/testCSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tests/testCSSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tests/testJSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: test_rr_1.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: test_rr_1.js
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/CSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/CSSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/JSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/JSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/packer.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/packer.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/version.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/version.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/csscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/csscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/cssconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/cssconfig.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/jscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/jscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/jsconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/jsconfig.zpt differ
+        
+    Comparing BRANCHES:  "1.3"(svn) vs. "1.3"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/README.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/README.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/doc/HISTORY.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/doc/HISTORY.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/exportimport/jsregistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/exportimport/jsregistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/exportimport/resourceregistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/exportimport/resourceregistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: CSSRegistryTestCase.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: RegistryTestCase.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: framework.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: runalltests.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test.zcml
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests/testCSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests/testCSSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: testExportImport.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests/testHTTPHeaders.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests/testHTTPHeaders.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests/testJSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: testPacker.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: testSkeleton.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test_profile
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test_rr_1.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test_rr_1.js
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/CSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/CSSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/JSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/JSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/packer.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/packer.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/version.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/version.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/csscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/csscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/cssconfig.zpt and /home/rok/devBranch experimental_authOnlyPreload set up to track remote branch experimental_authOnlyPreload from origin.
+Branch fschulze-object-based-refactoring set up to track remote branch fschulze-object-based-refactoring from origin.
+/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/cssconfig.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/jscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/jscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/jsconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/jsconfig.zpt differ
+        
+    Comparing BRANCHES:  "experimental_authOnlyPreload"(svn) vs. "experimental_authOnlyPreload"(git)
+        everything ok
+    Comparing BRANCHES:  "fschulze-object-based-refactoring"(svn) vs. "fschulze-object-based-refactoring"(git)
+        everything ok
+    Comparing BRANCHES:  "2.0"(svn) vs. "2.0"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/CHANGES.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/CHANGES.txt differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0: MANIFEST.in
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/browser/kss.pt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/browser/kss.pt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/exportimport/resourceregistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/exportimport/resourceregistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests: streamed.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/test.zcml and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tests/test.zcml differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/testHTTPHeaders.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tests/testHTTPHeaders.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tests/testJSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/test_resources: streamed.js
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/docs/LICENSE.GPL and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/docs/LICENSE.GPL differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/docs/LICENSE.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/docs/LICENSE.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/setup.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/setup.py differ
+        
+    Comparing BRANCHES:  "integrate-JSRegistry-branch"(svn) vs. "integrate-JSRegistry-bBranch integrate-JSRegistry-branch set up to track remote branch integrate-JSRegistry-branch from origin.
+Branch dunlapm-external-resources set up to track remote branch dunlapm-external-resources from origin.
+Branch eduplone-traverse set up to track remote branch eduplone-traverse from origin.
+Branch optilude-resource-bundles set up to track remote branch optilude-resource-bundles from origin.
+Branch do3cc_caching_9848 set up to track remote branch do3cc_caching_9848 from origin.
+Branch davconvent-perskincondition set up to track remote branch davconvent-perskincondition from origin.
+Branch mrtopf-6159-performance-by-caching set up to track remote branch mrtopf-6159-performance-by-caching from origin.
+Branch limi-plone21-integration set up to track remote branch limi-plone21-integration from origin.
+Branch davconvent-skinsblacklist set up to track remote branch davconvent-skinsblacklist from origin.
+Branch dunlapm-conditional-comments set up to track remote branch dunlapm-conditional-comments from origin.
+Branch fschulze-resource-compression set up to track remote branch fschulze-resource-compression from origin.
+Branch ree-five-azax set up to track remote branch ree-five-azax from origin.
+ranch"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/integrate-JSRegistry-branch/skins: CSSRegistry
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/integrate-JSRegistry-branch/skins: exampleJS
+        
+    Comparing BRANCHES:  "dunlapm-external-resources"(svn) vs. "dunlapm-external-resources"(git)
+        everything ok
+    Comparing BRANCHES:  "eduplone-traverse"(svn) vs. "eduplone-traverse"(git)
+        everything ok
+    Comparing BRANCHES:  "optilude-resource-bundles"(svn) vs. "optilude-resource-bundles"(git)
+        everything ok
+    Comparing BRANCHES:  "do3cc_caching_9848"(svn) vs. "do3cc_caching_9848"(git)
+        everything ok
+    Comparing BRANCHES:  "davconvent-perskincondition"(svn) vs. "davconvent-perskincondition"(git)
+        everything ok
+    Comparing BRANCHES:  "mrtopf-6159-performance-by-caching"(svn) vs. "mrtopf-6159-performance-by-caching"(git)
+        everything ok
+    Comparing BRANCHES:  "limi-plone21-integration"(svn) vs. "limi-plone21-integration"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/limi-plone21-integration/skins: CSSRegistry
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/limi-plone21-integration/skins: exampleJS
+        
+    Comparing BRANCHES:  "davconvent-skinsblacklist"(svn) vs. "davconvent-skinsblacklist"(git)
+        everything ok
+    Comparing BRANCHES:  "dunlapm-conditional-comments"(svn) vs. "dunlapm-conditional-comments"(git)
+        everything ok
+    Comparing BRANCHES:  "fschulze-resource-compression"(svn) vs. "fschulze-resource-compression"(git)
+        everything ok
+    Comparing BRANCHES:  "ree-five-azax"(svn) vs. "ree-five-azax"(git)
+        everything ok
+    Comparing TAGS:  "1.0.4"(svn) vs. "1.0.4"(git)
+        everything ok
+    Comparing TAGS:  "1.0.5"(svn) vs. "1.0.5"(git)
+        everything ok
+    Comparing TAGS:  "2.0.5"(svn) vs. "2.0.5"(git)
+        everything ok
+    Comparing TAGS:  "2.0.4"(svn) vs. "2.0.4"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/Extensions/Install.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/Extensions/Install.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/Extensions/migrate.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/Extensions/migrate.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/config.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/config.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/doc/HISTORY.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/doc/HISTORY.txt differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/skins/ResourceRegistries: jstest.js
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/skins/ResourceRegistries: simple.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/skins/ResourceRegistries: simple2.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/skins/ResourceRegistries: test_rr_1.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/skins/ResourceRegistries: test_rr_1.js
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/skins/ResourceRegistries: test_rr_2.css
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tests/testCSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/tests/testCSSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tests: testHTTPHeaders.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/tests/testJSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/version.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/version.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/csscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/csscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/cssconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/cssconfig.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/jscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/jscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.0/www/jsconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.0/www/jsconfig.zpt differ
+        
+    Comparing TAGS:  "2.0.2"(svn) vs. "2.0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.2"(svn) vs. "1.2"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/Extensions/Install.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/Extensions/Install.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/config.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/config.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/doc/HISTORY.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/doc/HISTORY.txt differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: five_tests_base.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: interfaces.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests/testCSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tests/testCSSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tests/testJSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: test_rr_1.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tests: test_rr_1.js
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/CSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/CSSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/JSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/JSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/tools/packer.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/tools/packer.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/version.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/version.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/csscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/csscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/cssconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/cssconfig.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/jscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/jscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.2/www/jsconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.2/www/jsconfig.zpt differ
+        
+    Comparing TAGS:  "1.3"(svn) vs. "1.3"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/README.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/README.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/doc/HISTORY.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/doc/HISTORY.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/exportimport/jsregistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/exportimport/jsregistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/exportimport/resourceregistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/exportimport/resourceregistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: CSSRegistryTestCase.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: RegistryTestCase.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: framework.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: runalltests.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test.zcml
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests/testCSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests/testCSSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: testExportImport.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests/testHTTPHeaders.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests/testHTTPHeaders.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests/testJSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: testPacker.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tests: testSkeleton.py
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test_profile
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test_rr_1.css
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tests: test_rr_1.js
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/CSSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/CSSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/JSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/JSRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/tools/packer.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/tools/packer.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/version.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/version.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/csscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/csscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/cssconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/cssconfig.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/jscomposition.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/jscomposition.zpt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.3/www/jsconfig.zpt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/1.3/www/jsconfig.zpt differ
+        
+    Comparing TAGS:  "2.1a1"(svn) vs. "2.1a1"(git)
+        everything ok
+    Comparing TAGS:  "1.3.4"(svn) vs. "1.3.4"(git)
+        everything ok
+    Comparing TAGS:  "2.0a2"(svn) vs. "2.0a2"(git)
+        everything ok
+    Comparing TAGS:  "1.3-alpha1"(svn) vs. "1.3-alpha1"(git)
+        everything ok
+    Comparing TAGS:  "2.0a1"(svn) vs. "2.0a1"(git)
+        everything ok
+    Comparing TAGS:  "2.0.3"(svn) vs. "2.0.3"(git)
+        everything ok
+    Comparing TAGS:  "1.4.0-beta5"(svn) vs. "1.4.0-beta5"(git)
+        everything ok
+    Comparing TAGS:  "1.4.0-beta4"(svn) vs. "1.4.0-beta4"(git)
+        everything ok
+    Comparing TAGS:  "1.4.0-beta3"(svn) vs. "1.4.0-beta3"(git)
+        everything ok
+    Comparing TAGS:  "1.4.0-beta2"(svn) vs. "1.4.0-beta2"(git)
+        everything ok
+    Comparing TAGS:  "1.4.0-beta1"(svn) vs. "1.4.0-beta1"(git)
+        everything ok
+    Comparing TAGS:  "2.0"(svn) vs. "2.0"(git)
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/CHANGES.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/CHANGES.txt differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0: MANIFEST.in
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/browser/kss.pt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/browser/kss.pt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/exportimport/resourceregistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/exportimport/resourceregistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests: streamed.py
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/test.zcml and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tests/test.zcml differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/testHTTPHeaders.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tests/testHTTPHeaders.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/testJSRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tests/testJSRegistry.py differ
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tests/test_resources: streamed.js
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/Products/ResourceRegistries/tools/BaseRegistry.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/Products/ResourceRegistries/tools/BaseRegistry.py differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/docs/LICENSE.GPL and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/docs/LICENSE.GPL differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/docs/LICENSE.txt and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/docs/LICENSE.txt differ
+        Files /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/2.0/setup.py and /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/git/2.0/setup.py differ
+        
+    Comparing TAGS:  "2.0.1"(svn) vs. "2.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.1beta"(svn) vs. "1.1beta"(git)
+        everything ok
+    Comparing TAGS:  "1.3.8"(svn) vs. "1.3.8"(git)
+        everything ok
+    Comparing TAGS:  "1.0.3"(svn) vs. "1.0.3"(git)
+        everything ok
+    Comparing TAGS:  "1.5.5"(svn) vs. "1.5.5"(git)
+        everything ok
+    Comparing TAGS:  "1.5.4"(svn) vs. "1.5.4"(git)
+        everything ok
+    Comparing TAGS:  "1.5.7"(svn) vs. "1.5.7"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.5.7/Products/ResourceRegistries/tests/test_resources: css
+        
+    Comparing TAGS:  "1.4.0"(svn) vs. "1.4.0"(git)
+        everything ok
+    Comparing TAGS:  "1.4.1"(svn) vs. "1.4.1"(git)
+        everything ok
+    Comparing TAGS:  "1.4.2"(svn) vs. "1.4.2"(git)
+        everything ok
+    Comparing TAGS:  "1.4.3"(svn) vs. "1.4.3"(git)
+        everything ok
+    Comparing TAGS:  "1.3-rc1"(svn) vs. "1.3-rc1"(git)
+        everything ok
+    Comparing TAGS:  "2.0b3"(svn) vs. "2.0b3"(git)
+        everything ok
+    Comparing TAGS:  "2.0b2"(svn) vs. "2.0b2"(git)
+        everything ok
+    Comparing TAGS:  "2.0b1"(svn) vs. "2.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.5.6"(svn)svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/collective/decobrewery.contenttypes/branches' non-existent in that revision
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/collective/decobrewery.contenttypes/tags' non-existent in that revision
+Branch 10910-fixregistry set up to track remote branch 10910-fixregistry from origin.
+Branch vangheem-plone3-any-catalog set up to track remote branch vangheem-plone3-any-catalog from origin.
+ vs. "1.5.6"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/Products.ResourceRegistries/svn/1.5.6/Products/ResourceRegistries/tests/test_resources: css
+        
+    Comparing TAGS:  "1.5.1"(svn) vs. "1.5.1"(git)
+        everything ok
+    Comparing TAGS:  "1.5.0"(svn) vs. "1.5.0"(git)
+        everything ok
+    Comparing TAGS:  "1.5.3"(svn) vs. "1.5.3"(git)
+        everything ok
+    Comparing TAGS:  "2.0b4"(svn) vs. "2.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.3.3"(svn) vs. "1.3.3"(git)
+        everything ok
+    Comparing TAGS:  "1.3.2"(svn) vs. "1.3.2"(git)
+        everything ok
+    Comparing TAGS:  "1.0.2"(svn) vs. "1.0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.2.2"(svn) vs. "1.2.2"(git)
+        everything ok
+    Comparing TAGS:  "1.2.3"(svn) vs. "1.2.3"(git)
+        everything ok
+    Comparing TAGS:  "1.3.5"(svn) vs. "1.3.5"(git)
+        everything ok
+    Comparing TAGS:  "1.2.1"(svn) vs. "1.2.1"(git)
+        everything ok
+    Comparing TAGS:  "1.3.9"(svn) vs. "1.3.9"(git)
+        everything ok
+    Comparing TAGS:  "1.5.2"(svn) vs. "1.5.2"(git)
+        everything ok
+    Comparing TAGS:  "1.1.0"(svn) vs. "1.1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.4.0-alpha2"(svn) vs. "1.4.0-alpha2"(git)
+        everything ok
+    Comparing TAGS:  "1.3-beta1"(svn) vs. "1.3-beta1"(git)
+        everything ok
+    Comparing TAGS:  "1.3-beta2"(svn) vs. "1.3-beta2"(git)
+        everything ok
+    Comparing TAGS:  "1.4.0-rc1"(svn) vs. "1.4.0-rc1"(git)
+        everything ok
+    Comparing TAGS:  "1.5.4.1"(svn) vs. "1.5.4.1"(git)
+        everything ok
+    Comparing TAGS:  "1.3.1"(svn) vs. "1.3.1"(git)
+        everything ok
+    Comparing TAGS:  "2.0b5"(svn) vs. "2.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.2.4"(svn) vs. "1.2.4"(git)
+        everything ok
+    Comparing TAGS:  "1.3.7"(svn) vs. "1.3.7"(git)
+        everything ok
+    Comparing TAGS:  "1.3.6"(svn) vs. "1.3.6"(git)
+        everything ok
+
+-----------------------------------------------
+Analyzing "decobrewery.contenttypes" repository
+-----------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/decobrewery.contenttypes/svn/trunk/decobrewery/contenttypes: locales
+        
+
+-------------------------------------
+Analyzing "plone.app.deco" repository
+-------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "10910-fixregistry"(svn) vs. "10910-fixregistry"(git)
+        everything ok
+
+--------------------------------------------
+Analyzing "plone.app.querystring" repository
+--------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "vangheem-plone3-any-catalog"(svn) vs. "vangheem-plone3-any-catalog"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+
+---------------------------------------------
+Analyzing "plone.directives.tiles" repository
+---------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+
+-------------------------------------------------
+Analyzing "plone.formwidget.multifile" repository
+-------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    CompaBranch jmehring-drafts set up to track remote branch jmehring-drafts from origin.
+Branch jmehring-drafts set up to track remote branch jmehring-drafts from origin.
+Branch windmill set up to track remote branch windmill from origin.
+Branch spliter-cleanup set up to track remote branch spliter-cleanup from origin.
+Branch spliter-js-back set up to track remote branch spliter-js-back from origin.
+Branch wiggy-original set up to track remote branch wiggy-original from origin.
+Branch jstestdriver-integration set up to track remote branch jstestdriver-integration from origin.
+Branch selenium set up to track remote branch selenium from origin.
+Branch dynamic-config set up to track remote branch dynamic-config from origin.
+Branch query-builder set up to track remote branch query-builder from origin.
+Branch json-calls set up to track remote branch json-calls from origin.
+Branch spliter-ajax-history set up to track remote branch spliter-ajax-history from origin.
+Branch dukebody-pablocks set up to track remote branch dukebody-pablocks from origin.
+Branch tile-simplification set up to track remote branch tile-simplification from origin.
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.app.deco/buildouts/dev/branches' non-existent in that revision
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.app.deco/buildouts/dev/tags' non-existent in that revision
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.app.deco/buildouts/dev/trunk' doesn't exist
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/collective/decobrewery.policy/branches' non-existent in that revision
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/collective/decobrewery.policy/tags' non-existent in that revision
+ring BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "jmehring-drafts"(svn) vs. "jmehring-drafts"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.formwidget.multifile/svn/jmehring-drafts/plone/formwidget/multifile: kss
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.formwidget.multifile/svn/jmehring-drafts/plone/formwidget/multifile: resources
+        
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+
+---------------------------------------
+Analyzing "plone.app.drafts" repository
+---------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "jmehring-drafts"(svn) vs. "jmehring-drafts"(git)
+        everything ok
+
+---------------------------------------
+Analyzing "plone.app.search" repository
+---------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "windmill"(svn) vs. "windmill"(git)
+        everything ok
+    Comparing BRANCHES:  "spliter-cleanup"(svn) vs. "spliter-cleanup"(git)
+        everything ok
+    Comparing BRANCHES:  "spliter-js-back"(svn) vs. "spliter-js-back"(git)
+        everything ok
+    Comparing BRANCHES:  "wiggy-original"(svn) vs. "wiggy-original"(git)
+        everything ok
+    Comparing BRANCHES:  "jstestdriver-integration"(svn) vs. "jstestdriver-integration"(git)
+        everything ok
+    Comparing BRANCHES:  "selenium"(svn) vs. "selenium"(git)
+        everything ok
+    Comparing BRANCHES:  "dynamic-config"(svn) vs. "dynamic-config"(git)
+        everything ok
+    Comparing BRANCHES:  "query-builder"(svn) vs. "query-builder"(git)
+        everything ok
+    Comparing BRANCHES:  "json-calls"(svn) vs. "json-calls"(git)
+        everything ok
+    Comparing BRANCHES:  "spliter-ajax-history"(svn) vs. "spliter-ajax-history"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+
+---------------------------------------
+Analyzing "plone.app.blocks" repository
+---------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-pablocks"(svn) vs. "dukebody-pablocks"(git)
+        everything ok
+    Comparing BRANCHES:  "tile-simplification"(svn) vs. "tile-simplification"(git)
+        everything ok
+    Comparing TAGS:  "dukebody-gsocfinal"(svn) vs. "dukebody-gsocfinal"(git)
+        everything ok
+
+------------------------------------
+Analyzing "buildout.deco" repository
+------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+
+-------------------------------------
+Analyzing "plone.app.page" repository
+-------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+
+-----------------------------------------
+Analyzing "decobrewery.policy" repository
+-----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+
+----------------------------------------------
+Analyzing "plone.app.standardtiles" repository
+---------------------------------------Branch dukebody-proxy-tile set up to track remote branch dukebody-proxy-tile from origin.
+Branch 10910-fixregistry set up to track remote branch 10910-fixregistry from origin.
+Branch dukebody-fieldtiles set up to track remote branch dukebody-fieldtiles from origin.
+Branch dukebody-imagetile-repo set up to track remote branch dukebody-imagetile-repo from origin.
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.subrequest/branches' non-existent in that revision
+Branch 0.4.1 set up to track remote branch 0.4.1 from origin.
+-------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-proxy-tile"(svn) vs. "dukebody-proxy-tile"(git)
+        everything ok
+    Comparing BRANCHES:  "10910-fixregistry"(svn) vs. "10910-fixregistry"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-fieldtiles"(svn) vs. "dukebody-fieldtiles"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-imagetile-repo"(svn) vs. "dukebody-imagetile-repo"(git)
+        everything ok
+    Comparing TAGS:  "dukebody-gsocfinal"(svn) vs. "dukebody-gsocfinal"(git)
+        everything ok
+
+---------------------------------------
+Analyzing "plone.subrequest" repository
+---------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.4"(svn) vs. "1.4"(git)
+        everything ok
+    Comparing TAGS:  "1.5"(svn) vs. "1.5"(git)
+        everything ok
+    Comparing TAGS:  "1.6"(svn) vs. "1.6"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.1"(svn) vs. "1.1"(git)
+        everything ok
+    Comparing TAGS:  "1.2"(svn) vs. "1.2"(git)
+        everything ok
+    Comparing TAGS:  "1.3"(svn) vs. "1.3"(git)
+        everything ok
+    Comparing TAGS:  "1.6.1"(svn) vs. "1.6.1"(git)
+        everything ok
+    Comparing TAGS:  "1.6b2"(svn) vs. "1.6b2"(git)
+        everything ok
+    Comparing TAGS:  "1.6b1"(svn) vs. "1.6b1"(git)
+        everything ok
+
+---------------------------------
+Analyzing "five.intid" repository
+---------------------------------
+
+Are all tags preserved?
+    svn: ['0.1.4', '0.2.0', '0.2.1', '0.3.0', '0.4.3', '0.4.4', '0.5.0', '0.5.1', '0.5.2', 'snapshot-20071126']
+    git: ['0.2.1', '0.3.0', '0.4.3', '0.4.4', '0.5.0', '0.5.1', '0.5.2']
+    diff: ['0.2.0', 'snapshot-20071126', '0.1.4']
+
+Are all branches preserved?
+    svn: ['0.4.1', 'five.intid-ramon', 'five.intid-ramon-3.0', 'localsitemanager', 'rocky-itraversable-fixes']
+    git: ['0.4.1']
+    diff: ['five.intid-ramon-3.0', 'rocky-itraversable-fixes', 'localsitemanager', 'five.intid-ramon']
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "0.4.1"(svn) vs. "0.4.1"(git)
+        everything ok
+    Comparing TAGS:  "0.3.0"(svn) vs. "0.3.0"(git)
+        everything ok
+    Comparing TAGS:  "0.5.1"(svn) vs. "0.5.1"(git)
+        everything ok
+    Comparing TAGS:  "0.2.1"(svn) vs. "0.2.1"(git)
+        everything ok
+    Comparing TAGS:  "0.4.3"(svn) vs. "0.4.3"(git)
+        everything ok
+    Comparing TAGS:  "0.5.0"(svn) vs. "0.5.0"(git)
+        everything ok
+    Comparing TAGS:  "0.4.4"(svn) vs. "0.4.4"(git)
+        everything ok
+    Comparing TAGS:  "0.5.2"(svn) vs. "0.5.2"(git)
+        everything ok
