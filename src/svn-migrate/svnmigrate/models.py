@@ -80,15 +80,11 @@ class Repo(object):
         call('git remote add origin git@github.com:%s/%s.git' % (self.git_org, self.name), cwd=git_cleaned)
 
     def publish(self, gh):
-        git_cleaned = path(self.config.git_cleaned, self.svn_repo, self.name)
-        if not os.path.isdir(git_cleaned):
-            return
-        
         gh_repos = get_gh_repos(gh, self.git_org)
         gh_repo_name = '%s/%s' % (self.git_org, self.name)
         if self.name in gh_repos:
-            if True or confirm('Do you want to delete "%s" repository from '
-                       'github?' % gh_repo_name):
+            if confirm('Do you want to delete "%s" repository from '
+                               'github?' % gh_repo_name):
                 gh.repos.delete(gh_repo_name)
                 header('"%s" deleted!' % gh_repo_name)
                 time.sleep(10)
@@ -96,6 +92,10 @@ class Repo(object):
                 header('"%s" SKIPPED.' % gh_repo_name)
                 return
 
+        git_cleaned = path(self.config.git_cleaned, self.svn_repo, self.name)
+        if not os.path.isdir(git_cleaned):
+            return
+        
         gh.repos.create(gh_repo_name)
         header('"%s" created.' % gh_repo_name)
 

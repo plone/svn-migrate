@@ -1,0 +1,1069 @@
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/collective/collective.z3cform.datagridfield_demo/branches' non-existent in that revision
+Branch davisagli-directives set up to track remote branch davisagli-directives from origin.
+
+------------------------------------------------------------
+Analyzing "collective.z3cform.datagridfield_demo" repository
+------------------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "release-0.5"(svn) vs. "release-0.5"(git)
+        everything ok
+
+--------------------------------------------
+Analyzing "plone.directives.form" repository
+--------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "davisagli-directives"(svn) vs. "davisagli-directives"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b7"(svn) vs. "1.0b7"(git)
+        everything ok
+
+--------------------------------------
+Analyzing "plone.namedfile" repository
+--------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0.4"(svn) vs. "1.0.4"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0.2"(svn) vs. "1.0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.0.3"(svn) vs. "1.0.3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b7"(svn) vs. "1.0b7"(git)
+        everything ok
+    Comparing TAGS:  "1.0b8"(svn) vs. "1.0b8"(git)
+        everything ok
+
+----------------------------------
+Analyzing "plone.scale" repository
+----------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/trunk/docs: .templates
+        
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/1.0/docs: .templates
+        
+    Comparing TAGS:  "1.1"(svn) vs. "1.1"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/1.1/docs: .templates
+        
+    Comparing TAGS:  "1.2"(svn) vs. "1.2"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/1.2/docs: .templates
+        
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/1.0a1/docs: .templates
+        
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/1.0a2/docs: .templates
+    svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.multilingual/tags' non-existent in that revision
+Branch humboldt set up to track remote branch humboldt from origin.
+Branch jmehring-drafts set up to track remote branch jmehring-drafts from origin.
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.multilingualbehavior/tags' non-existent in that revision
+Branch humboldt set up to track remote branch humboldt from origin.
+Branch archetypes-content-source set up to track remote branch archetypes-content-source from origin.
+Branch jquery-dynatree set up to track remote branch jquery-dynatree from origin.
+Branch dukebody-context set up to track remote branch dukebody-context from origin.
+Branch limi-improvements set up to track remote branch limi-improvements from origin.
+    
+    Comparing TAGS:  "1.2.2"(svn) vs. "1.2.2"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/1.2.2/docs: .templates
+        
+    Comparing TAGS:  "1.2.1"(svn) vs. "1.2.1"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.scale/svn/1.2.1/docs: .templates
+        
+
+-----------------------------------------
+Analyzing "plone.multilingual" repository
+-----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "humboldt"(svn) vs. "humboldt"(git)
+        everything ok
+
+-----------------------------------------
+Analyzing "example.conference" repository
+-----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "jmehring-drafts"(svn) vs. "jmehring-drafts"(git)
+        everything ok
+
+-------------------------------------------------
+Analyzing "plone.multilingualbehavior" repository
+-------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "humboldt"(svn) vs. "humboldt"(git)
+        everything ok
+
+---------------------------------------------------
+Analyzing "plone.formwidget.contenttree" repository
+---------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "archetypes-content-source"(svn) vs. "archetypes-content-source"(git)
+        everything ok
+    Comparing BRANCHES:  "jquery-dynatree"(svn) vs. "jquery-dynatree"(git)
+        everything ok
+    Comparing BRANCHES:  "dukebody-context"(svn) vs. "dukebody-context"(git)
+        everything ok
+    Comparing BRANCHES:  "limi-improvements"(svn) vs. "limi-improvements"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0.2"(svn) vs. "1.0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a3"(svn) vs. "1.0a3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "1.0a5"(svn) vs. "1.0a5"(git)
+        everything ok
+    Comparing TAGS:  "1.0a4"(svn) vs. "1.0a4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+
+----------------------------------------
+Analyzing "plone.synchronize" repository
+----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+
+-----------------------------------------
+Analyzing "plone.schemaeditor" repository
+-----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(Branch 3.x set up to track remote branch 3.x from origin.
+Branch jmehring-drafts set up to track remote branch jmehring-drafts from origin.
+Branch davisagli-tracebacks set up to track remote branch davisagli-tracebacks from origin.
+Branch simahawk_nested_dict set up to track remote branch simahawk_nested_dict from origin.
+Branch elro-directives set up to track remote branch elro-directives from origin.
+svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0.2"(svn) vs. "1.0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.0.3"(svn) vs. "1.0.3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a3"(svn) vs. "1.0a3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+
+------------------------------------
+Analyzing "plone.testing" repository
+------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "3.x"(svn) vs. "3.x"(git)
+        everything ok
+    Comparing TAGS:  "4.0.1"(svn) vs. "4.0.1"(git)
+        everything ok
+    Comparing TAGS:  "4.0.2"(svn) vs. "4.0.2"(git)
+        everything ok
+    Comparing TAGS:  "4.0"(svn) vs. "4.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "4.0a5"(svn) vs. "4.0a5"(git)
+        everything ok
+    Comparing TAGS:  "4.0a6"(svn) vs. "4.0a6"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "3.0a2"(svn) vs. "3.0a2"(git)
+        everything ok
+    Comparing TAGS:  "3.0a1"(svn) vs. "3.0a1"(git)
+        everything ok
+    Comparing TAGS:  "4.0a3"(svn) vs. "4.0a3"(git)
+        everything ok
+    Comparing TAGS:  "4.0a4"(svn) vs. "4.0a4"(git)
+        everything ok
+
+-------------------------------------------------
+Analyzing "plone.formwidget.namedfile" repository
+-------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "jmehring-drafts"(svn) vs. "jmehring-drafts"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b10"(svn) vs. "1.0b10"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b7"(svn) vs. "1.0b7"(git)
+        everything ok
+    Comparing TAGS:  "1.0b8"(svn) vs. "1.0b8"(git)
+        everything ok
+    Comparing TAGS:  "1.0b9"(svn) vs. "1.0b9"(git)
+        everything ok
+
+---------------------------------------
+Analyzing "plone.supermodel" repository
+---------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "davisagli-tracebacks"(svn) vs. "davisagli-tracebacks"(git)
+        everything ok
+    Comparing BRANCHES:  "simahawk_nested_dict"(svn) vs. "simahawk_nested_dict"(git)
+        everything ok
+    Comparing BRANCHES:  "elro-directives"(svn) vs. "elro-directives"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everythisvn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/plone/plone.app.intid/branches' non-existent in that revision
+Branch 1.x set up to track remote branch 1.x from origin.
+Branch jbaumann-locking set up to track remote branch jbaumann-locking from origin.
+Branch jmehring-drafts set up to track remote branch jmehring-drafts from origin.
+Branch toutpt-unicode set up to track remote branch toutpt-unicode from origin.
+Branch davisagli-extend-fsschema set up to track remote branch davisagli-extend-fsschema from origin.
+Branch 2.x set up to track remote branch 2.x from origin.
+Branch 1.x set up to track remote branch 1.x from origin.
+Branch stevem-export-types set up to track remote branch stevem-export-types from origin.
+Branch davisagli-behavior-actions set up to track remote branch davisagli-behavior-actions from origin.
+ng ok
+    Comparing TAGS:  "1.0.2"(svn) vs. "1.0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.0.3"(svn) vs. "1.0.3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b7"(svn) vs. "1.0b7"(git)
+        everything ok
+    Comparing TAGS:  "1.0b8"(svn) vs. "1.0b8"(git)
+        everything ok
+
+--------------------------------------
+Analyzing "plone.app.intid" repository
+--------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+
+------------------------------------------------
+Analyzing "plone.app.lockingbehavior" repository
+------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+
+--------------------------------------
+Analyzing "plone.dexterity" repository
+--------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "1.x"(svn) vs. "1.x"(git)
+        everything ok
+    Comparing BRANCHES:  "jbaumann-locking"(svn) vs. "jbaumann-locking"(git)
+        everything ok
+    Comparing BRANCHES:  "jmehring-drafts"(svn) vs. "jmehring-drafts"(git)
+        everything ok
+    Comparing BRANCHES:  "toutpt-unicode"(svn) vs. "toutpt-unicode"(git)
+        everything ok
+    Comparing BRANCHES:  "davisagli-extend-fsschema"(svn) vs. "davisagli-extend-fsschema"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a3"(svn) vs. "1.0a3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b7"(svn) vs. "1.0b7"(git)
+        everything ok
+    Comparing TAGS:  "1.0rc1"(svn) vs. "1.0rc1"(git)
+        everything ok
+
+------------------------------------------
+Analyzing "plone.app.dexterity" repository
+------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "2.x"(svn) vs. "2.x"(git)
+        everything ok
+    Comparing BRANCHES:  "1.x"(svn) vs. "1.x"(git)
+        everything ok
+    Comparing BRANCHES:  "stevem-export-types"(svn) vs. "stevem-export-types"(git)
+        everything ok
+    Comparing BRANCHES:  "davisagli-behavior-actions"(svn) vs. "davisagli-behavior-actions"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vsBranch jbaumann-jquery-ui set up to track remote branch jbaumann-jquery-ui from origin.
+Branch dukebody-context set up to track remote branch dukebody-context from origin.
+Branch do3cc_issue135 set up to track remote branch do3cc_issue135 from origin.
+Branch elro-supermodel-directives set up to track remote branch elro-supermodel-directives from origin.
+Branch davisagli-directives set up to track remote branch davisagli-directives from origin.
+. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a3"(svn) vs. "1.0a3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "1.0a5"(svn) vs. "1.0a5"(git)
+        everything ok
+    Comparing TAGS:  "1.0a4"(svn) vs. "1.0a4"(git)
+        everything ok
+    Comparing TAGS:  "1.0a7"(svn) vs. "1.0a7"(git)
+        everything ok
+    Comparing TAGS:  "1.0a6"(svn) vs. "1.0a6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0rc1"(svn) vs. "1.0rc1"(git)
+        everything ok
+
+----------------------------------------------------
+Analyzing "plone.formwidget.autocomplete" repository
+----------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "jbaumann-jquery-ui"(svn) vs. "jbaumann-jquery-ui"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.formwidget.autocomplete/svn/jbaumann-jquery-ui/plone/formwidget/autocomplete: jquery-autocomplete
+        
+    Comparing BRANCHES:  "dukebody-context"(svn) vs. "dukebody-context"(git)
+        everything ok
+    Comparing BRANCHES:  "do3cc_issue135"(svn) vs. "do3cc_issue135"(git)
+        everything ok
+    Comparing TAGS:  "1.1.1"(svn) vs. "1.1.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.1"(svn) vs. "1.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.2.0"(svn) vs. "1.2.0"(git)
+        everything ok
+    Comparing TAGS:  "1.2.1"(svn) vs. "1.2.1"(git)
+        everything ok
+
+-------------------------------------
+Analyzing "plone.autoform" repository
+-------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "elro-supermodel-directives"(svn) vs. "elro-supermodel-directives"(git)
+        everything ok
+    Comparing BRANCHES:  "davisagli-directives"(svn) vs. "davisagli-directives"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b7"(svn) vs. "1.0b7"(git)
+        everything ok
+
+-----------------------------------
+Analyzing "plone.folder" repository
+-----------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.Branch jmehring-drafts set up to track remote branch jmehring-drafts from origin.
+Branch deco-integration set up to track remote branch deco-integration from origin.
+Branch rapture-sprint set up to track remote branch rapture-sprint from origin.
+0a3"(svn) vs. "1.0a3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+
+------------------------------------------
+Analyzing "plone.app.textfield" repository
+------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "jmehring-drafts"(svn) vs. "jmehring-drafts"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+    Comparing TAGS:  "1.0b7"(svn) vs. "1.0b7"(git)
+        everything ok
+
+----------------------------------------------
+Analyzing "plone.app.relationfield" repository
+----------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "deco-integration"(svn) vs. "deco-integration"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.1"(svn) vs. "1.1"(git)
+        everything ok
+    Comparing TAGS:  "0.2"(svn) vs. "0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+
+--------------------------------------------------------
+Analyzing "collective.z3cform.datetimewidget" repository
+--------------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "rapture-sprint"(svn) vs. "rapture-sprint"(git)
+        everything ok
+    Comparing TAGS:  "1.0.4"(svn) vs. "1.0.4"(git)
+        everything ok
+    Comparing TAGS:  "1.0.5"(svn) vs. "1.0.5"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0.2"(svn) vs. "1.0.2"(git)
+        everything ok
+    Comparing TAGS:  "1.0.3"(svn) vs. "1.0.3"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "0.1a5"(svn) vs. "0.1a5"(git)
+        everything ok
+    Comparing TAGS:  "0.1a4"(svn) vs. "0.1a4"(git)
+        everything ok
+    Comparing TAGS:  "0.1a7"(svn) vs. "0.1a7"(git)
+        everything ok
+    Comparing TAGS:  "0.1a6"(svn) vs. "0.1a6"(git)
+        everything ok
+    Comparing TAGS:  "0.1a3"(svn) vs. "0.1a3"(git)
+        everything ok
+    Comparing TAGS:  "0.1a9"(svn) vs. "0.1a9"(git)
+        everything ok
+    Comparing TAGS:  "1.1"(svn) vs. "1.1"(git)
+      Branch davisagli-reference-engine set up to track remote branch davisagli-reference-engine from origin.
+Branch kss-inline-validation set up to track remote branch kss-inline-validation from origin.
+Branch tinymce-field-name set up to track remote branch tinymce-field-name from origin.
+  everything ok
+
+-----------------------------------
+Analyzing "plone.rfc822" repository
+-----------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+
+---------------------------------------------------
+Analyzing "plone.app.versioningbehavior" repository
+---------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+
+------------------------------------------------------
+Analyzing "plone.app.referenceablebehavior" repository
+------------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "davisagli-reference-engine"(svn) vs. "davisagli-reference-engine"(git)
+        everything ok
+    Comparing TAGS:  "0.1"(svn) vs. "0.1"(git)
+        everything ok
+    Comparing TAGS:  "0.3"(svn) vs. "0.3"(git)
+        everything ok
+    Comparing TAGS:  "0.2"(svn) vs. "0.2"(git)
+        everything ok
+
+----------------------------------------
+Analyzing "plone.app.z3cform" repository
+----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "kss-inline-validation"(svn) vs. "kss-inline-validation"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.app.z3cform/svn/kss-inline-validation/src: plone.z3cform
+        
+    Comparing BRANCHES:  "tinymce-field-name"(svn) vs. "tinymce-field-name"(git)
+        everything ok
+    Comparing TAGS:  "0.4.2"(svn) vs. "0.4.2"(git)
+        everything ok
+    Comparing TAGS:  "0.3.2"(svn) vs. "0.3.2"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.app.z3cform/svn/0.3.2: src
+        
+    Comparing TAGS:  "0.4.5"(svn) vs. "0.4.5"(git)
+        everything ok
+    Comparing TAGS:  "0.3"(svn) vs. "0.3"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.app.z3cform/svn/0.3: src
+        
+    Comparing TAGS:  "0.3.1"(svn) vs. "0.3.1"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.app.z3cform/svn/0.3.1: src
+        
+    Comparing TAGS:  "0.4.1"(svn) vs. "0.4.1"(git)
+        everything ok
+    Comparing TAGS:  "0.4.9"(svn) vs. "0.4.9"(git)
+        everything ok
+    Comparing TAGS:  "0.4.8"(svn) vs. "0.4.8"(git)
+        everything ok
+    Comparing TAGS:  "0.4.7"(svn) vs. "0.4.7"(git)
+        everything ok
+    Comparing TAGS:  "0.4.4"(svn) vs. "0.4.4"(git)
+        everything ok
+    Comparing TAGS:  "0.4.6"(svn) vs. "0.4.6"(git)
+        everything ok
+    Comparing TAGS:  "0.4.0"(svn) vs. "0.4.0"(git)
+        Only in /home/rok/dev/plone/svn-migrate/var/repos/analyze/plone.app.z3cform/svn/0.4.0: src
+        
+    Comparing TAGS:  "0.5.4"(svn) vs. "0.5.4"(git)
+        everything ok
+    Comparing TAGS:  "0.5.5"(svn) vs. "0.5.5"(git)
+        everything ok
+    Comparing TAGS:  "0.5.6"(svn) vs. "0.5.6"(git)
+        eveBranch supton-defensive-create-handler set up to track remote branch supton-defensive-create-handler from origin.
+svn: URL 'file:///home/rok/dev/plone/svn-migrate/var/repos/svn-mirror/collective/collective.z3cform.datagridfield/branches' non-existent in that revision
+rything ok
+    Comparing TAGS:  "0.4.3"(svn) vs. "0.4.3"(git)
+        everything ok
+    Comparing TAGS:  "0.5.0"(svn) vs. "0.5.0"(git)
+        everything ok
+    Comparing TAGS:  "0.5.1"(svn) vs. "0.5.1"(git)
+        everything ok
+    Comparing TAGS:  "0.5.2"(svn) vs. "0.5.2"(git)
+        everything ok
+    Comparing TAGS:  "0.5.3"(svn) vs. "0.5.3"(git)
+        everything ok
+
+---------------------------------
+Analyzing "plone.uuid" repository
+---------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing BRANCHES:  "supton-defensive-create-handler"(svn) vs. "supton-defensive-create-handler"(git)
+        everything ok
+    Comparing TAGS:  "1.0a0.simplon.1"(svn) vs. "1.0a0.simplon.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+
+-------------------------------------------------------
+Analyzing "collective.z3cform.datagridfield" repository
+-------------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "release-0.2a"(svn) vs. "release-0.2a"(git)
+        everything ok
+    Comparing TAGS:  "0.7"(svn) vs. "0.7"(git)
+        everything ok
+    Comparing TAGS:  "0.6"(svn) vs. "0.6"(git)
+        everything ok
+    Comparing TAGS:  "release-0.3"(svn) vs. "release-0.3"(git)
+        everything ok
+    Comparing TAGS:  "release-0.5"(svn) vs. "release-0.5"(git)
+        everything ok
+    Comparing TAGS:  "release-0.4"(svn) vs. "release-0.4"(git)
+        everything ok
+    Comparing TAGS:  "release-0.1a"(svn) vs. "release-0.1a"(git)
+        everything ok
+
+------------------------------------------------
+Analyzing "plone.app.stagingbehavior" repository
+------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "0.1a1"(svn) vs. "0.1a1"(git)
+        everything ok
+    Comparing TAGS:  "0.1b1"(svn) vs. "0.1b1"(git)
+        everything ok
+    Comparing TAGS:  "0.1b2"(svn) vs. "0.1b2"(git)
+        everything ok
+    Comparing TAGS:  "0.1a2"(svn) vs. "0.1a2"(git)
+        everything ok
+
+-------------------------------------
+Analyzing "plone.alterego" repository
+-------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+
+-------------------------------------
+Analyzing "plone.behavior" repository
+-------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+    Comparing TAGS:  "1.0.1"(svn) vs. "1.0.1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b2"(svn) vs. "1.0b2"(git)
+        everything ok
+    Comparing TAGS:  "1.0b3"(svn) vs. "1.0b3"(git)
+        everything ok
+    Comparing TAGS:  "1.0b4"(svn) vs. "1.0b4"(git)
+        everything ok
+    Comparing TAGS:  "1.0b5"(svn) vs. "1.0b5"(git)
+        everything ok
+    Comparing TAGS:  "1.0b6"(svn) vs. "1.0b6"(git)
+        everything ok
+
+-------------------------------------------------
+Analyzing "plone.directives.dexterity" repository
+-------------------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
+    Comparing TAGS:  "1.0a1"(svn) vs. "1.0a1"(git)
+        everything ok
+    Comparing TAGS:  "1.0b1"(svn) vs. "1.0b1"(git)
+        everything ok
+    Comparing TAGS:  "1.0a2"(svn) vs. "1.0a2"(git)
+        everything ok
+    Comparing TAGS:  "1.0"(svn) vs. "1.0"(git)
+        everything ok
+
+----------------------------------------
+Analyzing "example.dexterity" repository
+----------------------------------------
+
+Are all tags preserved?
+    everything ok
+
+Are all branches preserved?
+    everything ok
+
+Does content of the GIT master matches SVN trunk?
+    Comparing BRANCHES "trunk"(svn) vs. "master"(git)
+        everything ok
