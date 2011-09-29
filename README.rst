@@ -7,7 +7,7 @@ to Github.
 Setup
 =====
 
-You need to have libsvn-dev, qmake and qt-sqk installed for svn2git to be
+You need to have libsvn-dev, qmake and qt-sdk installed for svn2git to be
 compiled. Don't try this on a non-Linux OS, it won't work.
 
 We'll need SVN mirrors of all three plone.org repositories. This will take
